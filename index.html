@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdulrahman | Portfolio</title>
+  <meta name="description" content="بورتفوليو عبد الرحمن عسيري - Application Support & Automation">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="langToggle" class="lang-toggle" title="تبديل اللغة">EN</button>
+
+  <div id="themeOverlay" class="theme-overlay" aria-hidden="true"></div>
+  <div id="cursorSpotlight" class="cursor-spotlight"></div>
+
+  <!-- قسم الملف التعريفي -->
+  <section id="profile" class="profile-section reveal">
+    <div class="profile-inner">
+      <div class="profile-identity">
+        <div class="avatar-wrapper">
+          <img src="icons/icon-512.png" alt="Avatar" class="avatar">
+        </div>
+        <h1>Abdulrahman Asiri</h1>
+      </div>
+      <p class="tagline">مهندس دعم التطبيقات | أدوات داخلية وأتمتة | مطور برمجيات</p>
+      <p class="summary">
+        متخصص دعم تطبيقات متفانٍ بخبرة تزيد عن 5 سنوات في دعم الأنظمة التشغيلية في القطاعين الحكومي والخاص. خبير في استكشاف الأخطاء وتحليل رحلة المستخدم وإعداد تقارير فنية جاهزة للمطورين (خطوات إعادة الإنتاج، السلوك المتوقع مقابل الفعلي، وتحليل الأثر). سجل حافل في حل المشكلات التقنية المعقدة وتبسيط سير العمل وتقديم نتائج عالية الجودة في بيئات سريعة الإيقاع.
+      </p>
+      <div class="profile-actions">
+        <a href="#cv" class="btn primary-btn">عرض السيرة الذاتية</a>
+        <a href="#contact" class="btn secondary-btn">تواصل معي</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم السيرة الذاتية -->
+  <section id="cv" class="cv-section reveal">
+    <h2 id="cvTitle">السيرة الذاتية</h2>
+
+    <div class="cv-bento">
+      <div class="cv-card cv-card--identity">
+        <span class="cv-card-tag" id="cvIdentityTag">Professional Summary</span>
+        <h3 class="cv-name">Abdulrahman Asiri</h3>
+        <p class="cv-role" id="cvRole">Application Support Engineer &amp; Software Developer</p>
+        <p class="cv-meta" id="cvMeta">5+ years &nbsp;·&nbsp; Riyadh, KSA &nbsp;·&nbsp; Gov &amp; Private Sector</p>
+        <p class="cv-about" id="cvAbout">
+          Specialist in operational system support, user-journey analysis, and producing developer-ready technical reports.
+          Expert in troubleshooting, root-cause analysis, and knowledge-base architecture across high-pressure enterprise environments.
+        </p>
+        <div class="cv-identity-chips" id="cvChips">
+          <span class="cv-chip">App Troubleshooting</span>
+          <span class="cv-chip">Process Automation</span>
+          <span class="cv-chip">Root-Cause Analysis</span>
+          <span class="cv-chip">Git · Postman · CRM</span>
+        </div>
+        <div class="cv-identity-langs" id="cvLangs">
+          <span class="cv-chip cv-lang-chip" id="cvLang1">Arabic — Native</span>
+          <span class="cv-chip cv-lang-chip" id="cvLang2">English — Professional</span>
+        </div>
+      </div>
+
+      <div class="cv-card cv-card--skills">
+        <span class="cv-card-tag" id="cvSkillsTag">Skills</span>
+
+        <p class="cv-skill-hint" id="cvSkillHint">
+          اضغط على أي مهارة لعرض الوصف المختصر أدناه.
+        </p>
+
+        <div class="cv-skill-list" id="cvSkillsList">
+          <button type="button" class="cv-skill-chip is-active" data-skill="app_troubleshooting">
+            <span class="cv-skill-name">Application Troubleshooting &amp; Triage</span>
+          </button>
+
+          <button type="button" class="cv-skill-chip" data-skill="root_cause">
+            <span class="cv-skill-name">Root-Cause Analysis &amp; Bug Reporting</span>
+          </button>
+
+          <button type="button" class="cv-skill-chip" data-skill="automation">
+            <span class="cv-skill-name">Process Automation &amp; Internal Tools</span>
+          </button>
+
+          <button type="button" class="cv-skill-chip" data-skill="documentation">
+            <span class="cv-skill-name">Knowledge Base &amp; Technical Writing</span>
+          </button>
+
+          <button type="button" class="cv-skill-chip" data-skill="crm">
+            <span class="cv-skill-name">CRM Systems &amp; Stakeholder Support</span>
+          </button>
+        </div>
+
+        <div class="cv-skill-details cv-skill-details--pulse" id="cvSkillDetails" aria-live="polite">
+          Select a skill to view a detailed description.
+        </div>
+      </div>
+
+      <div class="cv-card cv-card--timeline">
+        <span class="cv-card-tag" id="cvTimelineTag">Work Experience</span>
+        <ul class="cv-timeline">
+          <li class="cv-timeline-item" data-exp-id="exp01">
+            <span class="cv-tl-year">Oct 2024 –<br>Present</span>
+            <span class="cv-tl-dot"></span>
+            <div class="cv-tl-body">
+              <strong>Application Support Specialist (Internal Tools &amp; Automation)</strong>
+              <p>Enseyab Information Technology · Internal support tools &amp; documentation · KB standardization</p>
+              <span class="cv-tl-expand-hint">&#43; View Details</span>
+            </div>
+          </li>
+          <li class="cv-timeline-item" data-exp-id="exp02">
+            <span class="cv-tl-year">Nov 2022 –<br>May 2023</span>
+            <span class="cv-tl-dot"></span>
+            <div class="cv-tl-body">
+              <strong>Application Support Specialist</strong>
+              <p>T Sport · Mobile app technical support · User journey streamlining</p>
+              <span class="cv-tl-expand-hint">&#43; View Details</span>
+            </div>
+          </li>
+          <li class="cv-timeline-item" data-exp-id="exp03">
+            <span class="cv-tl-year">Sep 2022 –<br>Nov 2022</span>
+            <span class="cv-tl-dot"></span>
+            <div class="cv-tl-body">
+              <strong>Customer Service Representative</strong>
+              <p>ccc by stc · High-volume CRM inquiries · Incident documentation</p>
+              <span class="cv-tl-expand-hint">&#43; View Details</span>
+            </div>
+          </li>
+          <li class="cv-timeline-item" data-exp-id="exp04">
+            <span class="cv-tl-year">Sep 2018 –<br>Sep 2021</span>
+            <span class="cv-tl-dot"></span>
+            <div class="cv-tl-body">
+              <strong>Customer Service Engineer</strong>
+              <p>qTech (Alqemam) · Onsite &amp; remote IT support · Workstation deployment &amp; maintenance</p>
+              <span class="cv-tl-expand-hint">&#43; View Details</span>
+            </div>
+          </li>
+          <li class="cv-timeline-item">
+            <span class="cv-tl-year">2017</span>
+            <span class="cv-tl-dot"></span>
+            <div class="cv-tl-body">
+              <strong>Technical Diploma in Software</strong>
+              <p>Technical College (TVTC)</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-card cv-card--code">
+        <span class="cv-card-tag">// achievements.js</span>
+        <pre class="cv-code"><code><span class="cv-kw">const</span> <span class="cv-var">engineer</span> = {
+  role:      <span class="cv-str">"App Support Specialist"</span>,
+  exp:       <span class="cv-str">"5+ years"</span>,
+  sectors:   [<span class="cv-str">"Government"</span>, <span class="cv-str">"Private"</span>],
+  tools:     [
+    <span class="cv-str">"Git"</span>, <span class="cv-str">"VS Code"</span>,
+    <span class="cv-str">"Postman"</span>, <span class="cv-str">"CRM"</span>,
+  ],
+  strengths: {
+    reports:  <span class="cv-str">"Developer-ready tickets"</span>,
+    analysis: <span class="cv-str">"Root-cause &amp; UX"</span>,
+    docs:     <span class="cv-str">"KB architecture"</span>,
+  },
+};</code></pre>
+      </div>
+    </div>
+
+    <div class="cv-actions">
+      <a href="cv.pdf" download class="btn cv-download-btn" id="cvDownloadBtn">تحميل PDF</a>
+    </div>
+  </section>
+
+  <!-- قسم الإحصائيات والمهارات -->
+  <section id="stats" class="stats-section reveal">
+    <h2 id="statsTitle">الإحصائيات والمهارات</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" data-counter-target="5" data-counter-suffix="+">0</div>
+        <div class="stat-label">سنوات الخبرة</div>
+      </div>
+
+      <div class="stat-card stat-card--projects-static">
+        <div class="stat-number" data-counter-target="4">0</div>
+        <div class="stat-label">المشاريع</div>
+        <div class="stat-subtext" id="projectsPreparingText">جاري الإعداد</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-number" data-counter-target="4">0</div>
+        <div class="stat-label">الشركات</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-number" data-counter-target="2">0</div>
+        <div class="stat-label">القطاعات</div>
+      </div>
+    </div>
+
+    <div class="skills-chips" id="tracksChips">
+      <button type="button" class="chip" data-theme="pulse_support" title="دعم التطبيقات">Pulse Support</button>
+      <button type="button" class="chip" data-theme="sla_command" title="إدارة الحوادث والأولويات">SLA Command</button>
+      <button type="button" class="chip" data-theme="automation_forge" title="الأتمتة والأدوات الداخلية">Automation Forge</button>
+      <button type="button" class="chip" data-theme="knowledge_vault" title="قاعدة المعرفة والتوثيق">Knowledge Vault</button>
+      <button type="button" class="chip" data-theme="enablement_studio" title="تمكين المستخدم">Enablement Studio</button>
+      <button type="button" class="chip" data-theme="implementation_dock" title="الدعم أثناء التطبيق والتهيئة">Implementation Dock</button>
+      <button type="button" class="chip" data-theme="quality_sentinel" title="الاختبار والانحدار والجودة">Quality Sentinel</button>
+    </div>
+  </section>
+
+  <!-- قسم اللوحة - ملفات القضايا -->
+  <section id="cases" class="cases-section reveal">
+    <h2 id="casesTitle">نماذج الحالات التشغيلية</h2>
+    <div id="case-board" class="case-board"></div>
+  </section>
+
+  <!-- قسم التواصل -->
+  <section id="contact" class="contact-section reveal">
+    <h2 id="contactTitle">تواصل معي</h2>
+    <p id="contactText" class="contact-text">يسعدني تواصلك عبر المنصات التالية</p>
+    <div class="social-links">
+      <a href="mailto:abdurhmnasiri31@gmail.com" class="social-btn email" title="Email">
+        <span class="neon-icon" data-icon="envelope" aria-hidden="true"></span>
+      </a>
+      <a href="https://github.com/abdulrahman-asiri" target="_blank" class="social-btn github" title="GitHub">
+        <span class="neon-icon" data-icon="github" aria-hidden="true"></span>
+      </a>
+      <a href="https://www.linkedin.com/in/abdulrhmn-asiri-1a579320a?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="social-btn linkedin" title="LinkedIn">
+        <span class="neon-icon" data-icon="linkedin" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- نافذة غرفة القضية -->
+  <div id="case-modal" class="case-modal hidden">
+    <div class="case-modal-content">
+      <button id="close-case-modal" class="close-case-modal">×</button>
+      <div id="case-modal-body" class="case-modal-body"></div>
+      <div class="case-modal-actions">
+        <button id="generateTicketBtn" class="case-ticket-btn">Generate Developer Ticket</button>
+        <button id="copyTicketJsonBtn" class="case-copy-btn" disabled>Copy JSON</button>
+        <button id="caseToInterviewBtn" class="case-interview-btn">Interview this case</button>
+      </div>
+
+      <div id="ticketPanel" class="ticket-panel hidden">
+        <div class="ticket-panel-head">
+          <div class="ticket-title" id="ticketPanelTitle">Developer Ticket</div>
+          <div class="ticket-badge" id="ticketQualityBadge">–</div>
+        </div>
+        <div class="ticket-panel-sub" id="ticketImproveNote"></div>
+        <div class="ticket-grid">
+          <div class="ticket-card" id="ticketEnglish"></div>
+          <div class="ticket-card" id="ticketArabic"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة وضع المقابلة -->
+  <div id="interview-modal" class="interview-modal hidden">
+    <div class="interview-modal-content">
+      <button id="close-interview-modal" class="close-interview-modal">×</button>
+      <div class="interview-header-row">
+        <div id="interviewTrackBadge" class="track-badge">Pulse Support</div>
+        <button id="interviewBackBtn" class="interview-back-btn hidden">Back</button>
+      </div>
+      <div id="interview-modal-body" class="interview-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- نافذة تفاصيل الخبرة المهنية -->
+  <div id="role-modal" class="case-modal hidden">
+    <div class="case-modal-content role-modal-content">
+      <button id="close-role-modal" class="close-case-modal">×</button>
+      <div id="role-modal-body" class="role-modal-body"></div>
+    </div>
+  </div>
+
+  <div id="signature" class="signature">AA</div>
+
+  <footer class="footer">
+    <p> <span id="currentYear"></span> عبدالرحمن عسيري حقوق النشر محفوظة</p>
+  </footer>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
