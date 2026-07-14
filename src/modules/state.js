@@ -1,14 +1,5 @@
-export const appState = {
-  lang: 'ar',
-  track: 'pulse_support',
-  interview: { mode: 'track', track: 'pulse_support', caseObj: null },
-  lastCase: null,
-  lastTicket: null
-};
+import { getSavedLang } from '../utils/lang.js';
 
-export function loadSavedLang() {
-  try {
-    const v = localStorage.getItem('selectedLang');
-    if (v === 'ar' || v === 'en') appState.lang = v;
-  } catch (_) {}
-}
+export const appState = {
+  lang: getSavedLang()
+};

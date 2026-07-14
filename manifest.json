@@ -1,12 +1,12 @@
 {
-  "name": "Abdulrahman Asiri Portfolio",
-  "short_name": "AA Portfolio",
+  "name": "Abdulrahman Asiri",
+  "short_name": "Abdulrahman Asiri",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0a192f",
-  "theme_color": "#0a192f",
+  "background_color": "#0B0C0E",
+  "theme_color": "#0B0C0E",
   "orientation": "portrait",
-  "description": "بورتفوليو عبد الرحمن عسيري - Application Support & Automation",
+  "description": "Abdulrahman Asiri — technical solutions grounded in real operational work.",
   "icons": [
     {
       "src": "icons/icon-192.png",

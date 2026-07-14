@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Local env / secrets
+.env
+
+# Internal AI-assistant tooling and dev notes (not part of the public site)
+.claude/
+CLAUDE.md
+
+# Hidden, unlinked draft pages — not part of the public release
+systems.html
+casebook.html
+src/systems-main.js
+src/casebook-main.js
+src/modules/systems-i18n.js
+src/modules/casebook-i18n.js
+src/data/systems-translations.js
+src/data/casebook-cases.js
+src/data/casebook-translations.js

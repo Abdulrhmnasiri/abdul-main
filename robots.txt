@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abdulrhmnasiri.github.io/abdul-main/sitemap.xml

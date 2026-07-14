@@ -1,126 +1,63 @@
 import { appState } from './state.js';
-import { i18n, statusTranslations } from '../data/translations.js';
-import { trackInfo } from '../data/tracks.js';
-import { registry } from './registry.js';
+import { i18n } from '../data/translations.js';
 
-export function translateStatus(status) {
-  return statusTranslations[appState.lang]?.[status] || status;
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el && value !== undefined) el.textContent = value;
+}
+
+function setAccessibleLabel(id, value) {
+  const el = document.getElementById(id);
+  if (!el || value === undefined) return;
+  el.setAttribute('aria-label', value);
+  el.setAttribute('title', value);
 }
 
 export function applyTranslations() {
-  const langData = i18n[appState.lang];
+  const t = i18n[appState.lang];
 
-  const els = {
-    tagline: document.querySelector('.profile-section .tagline'),
-    summary: document.querySelector('.profile-section .summary'),
-    primaryBtn: document.querySelector('.profile-actions .primary-btn'),
-    secondaryBtn: document.querySelector('.profile-actions .secondary-btn'),
-    statsTitle: document.getElementById('statsTitle'),
-    casesTitle: document.getElementById('casesTitle'),
-    contactTitle: document.getElementById('contactTitle'),
-    contactText: document.getElementById('contactText'),
-    interviewBtn: document.getElementById('interviewModeBtn'),
-    caseInterviewBtn: document.getElementById('caseToInterviewBtn'),
-    interviewBackBtn: document.getElementById('interviewBackBtn'),
-    langToggleBtn: document.getElementById('langToggle'),
-    projectsPreparingText: document.getElementById('projectsPreparingText')
-  };
+  setText('profileName', t.profile_name);
+  setText('heroEyebrow', t.hero_eyebrow);
+  setText('profileHeadline', t.profile_headline);
+  setText('profileSummary', t.profile_summary);
+  setText('primaryBtn', t.primary_btn);
+  setText('secondaryBtn', t.secondary_btn);
 
-  if (els.tagline) els.tagline.textContent = langData.profile_tagline;
-  if (els.summary) els.summary.textContent = langData.profile_summary;
-  if (els.primaryBtn) els.primaryBtn.textContent = langData.primary_btn;
-  if (els.secondaryBtn) els.secondaryBtn.textContent = langData.secondary_btn;
-  if (els.statsTitle) els.statsTitle.textContent = langData.stats_title;
-  if (els.casesTitle) els.casesTitle.textContent = langData.cases_title;
-  if (els.contactTitle) els.contactTitle.textContent = langData.contact_title;
-  if (els.contactText) els.contactText.textContent = langData.contact_text;
-  if (els.projectsPreparingText) els.projectsPreparingText.textContent = langData.projects_preparing_text;
-
-  const cvTitle = document.getElementById('cvTitle');
-  if (cvTitle) cvTitle.textContent = langData.cv_title;
-
-  const cvDownloadBtn = document.getElementById('cvDownloadBtn');
-  if (cvDownloadBtn) cvDownloadBtn.textContent = langData.cv_download;
-
-  const cvIdentityTag = document.getElementById('cvIdentityTag');
-  if (cvIdentityTag) cvIdentityTag.textContent = langData.cv_identity_tag;
-
-  const cvRole = document.getElementById('cvRole');
-  if (cvRole) cvRole.textContent = langData.cv_role;
-
-  const cvMeta = document.getElementById('cvMeta');
-  if (cvMeta) cvMeta.textContent = langData.cv_meta;
-
-  const cvAbout = document.getElementById('cvAbout');
-  if (cvAbout) cvAbout.textContent = langData.cv_about;
-
-  const cvChips = document.getElementById('cvChips');
-  if (cvChips && langData.cv_chips) {
-    const chips = cvChips.querySelectorAll('.cv-chip');
-    chips.forEach((chip, idx) => {
-      if (langData.cv_chips[idx]) chip.textContent = langData.cv_chips[idx];
-    });
-  }
-
-  const cvLang1 = document.getElementById('cvLang1');
-  if (cvLang1) cvLang1.textContent = langData.cv_lang_1;
-
-  const cvLang2 = document.getElementById('cvLang2');
-  if (cvLang2) cvLang2.textContent = langData.cv_lang_2;
-
-  const cvSkillsTag = document.getElementById('cvSkillsTag');
-  if (cvSkillsTag) cvSkillsTag.textContent = langData.cv_skills_tag;
-
-  const cvSkillHint = document.getElementById('cvSkillHint');
-  if (cvSkillHint) cvSkillHint.textContent = langData.cv_skill_hint;
-
-  document.querySelectorAll('.cv-skill-name').forEach((el, idx) => {
-    if (langData.cv_skill_labels && langData.cv_skill_labels[idx]) {
-      el.textContent = langData.cv_skill_labels[idx];
-    }
+  setText('methodTitle', t.method_title);
+  document.querySelectorAll('.method-stage').forEach((el, idx) => {
+    const stage = t.method_stages[idx];
+    if (!stage) return;
+    const titleEl = el.querySelector('.method-stage-title');
+    const bodyEl = el.querySelector('.method-stage-body');
+    if (titleEl) titleEl.textContent = stage.title;
+    if (bodyEl) bodyEl.textContent = stage.body;
   });
 
-  const cvTimelineTag = document.getElementById('cvTimelineTag');
-  if (cvTimelineTag) cvTimelineTag.textContent = langData.cv_timeline_tag;
+  setText('practiceKicker', t.practice_kicker);
+  setText('practiceTitle', t.practice_title);
+  setText('practiceBody', t.practice_body);
 
-  document.querySelectorAll('.cv-timeline-item').forEach((item, idx) => {
-    const yearEl = item.querySelector('.cv-tl-year');
-    const titleEl = item.querySelector('.cv-tl-body strong');
-    const descEl = item.querySelector('.cv-tl-body p');
+  setText('technicalKicker', t.technical_kicker);
 
-    if (yearEl && langData.cv_tl_years && langData.cv_tl_years[idx]) yearEl.innerHTML = langData.cv_tl_years[idx];
-    if (titleEl && langData.cv_tl_titles && langData.cv_tl_titles[idx]) titleEl.textContent = langData.cv_tl_titles[idx];
-    if (descEl && langData.cv_tl_descs && langData.cv_tl_descs[idx]) descEl.textContent = langData.cv_tl_descs[idx];
-  });
+  setText('productionTag', t.production_tag);
+  setText('productionTitle', t.production_title);
+  setText('productionBody', t.production_body);
+  setText('productionCta', t.production_cta);
 
-  if (els.interviewBtn) els.interviewBtn.textContent = langData.interview_btn;
-  if (els.caseInterviewBtn) els.caseInterviewBtn.textContent = langData.case_interview_btn;
-  if (els.interviewBackBtn) els.interviewBackBtn.textContent = langData.interview_back_btn;
-  if (els.langToggleBtn) els.langToggleBtn.textContent = appState.lang === 'ar' ? 'EN' : 'AR';
+  setText('researchTag', t.research_tag);
+  setText('technicalTitle', t.technical_title);
+  setText('technicalBody', t.technical_body);
+  setText('technicalCta', t.technical_cta);
 
-  document.querySelectorAll('.stat-label').forEach((label, idx) => {
-    if (langData.stats_labels[idx]) {
-      label.textContent = langData.stats_labels[idx];
-    }
-  });
+  setAccessibleLabel('contactEmailIcon', t.contact_email);
+  setAccessibleLabel('contactLinkedinIcon', t.contact_linkedin);
+  setAccessibleLabel('contactGithubIcon', t.contact_github);
 
-  document.querySelectorAll('#tracksChips .chip').forEach(chip => {
-    const key = chip.getAttribute('data-theme');
-    if (key && trackInfo[key]) {
-      chip.setAttribute('title', appState.lang === 'ar' ? trackInfo[key].ar : trackInfo[key].en);
-    }
-  });
-
-  const badge = document.getElementById('interviewTrackBadge');
-  if (badge && trackInfo[appState.track]) {
-    badge.textContent = trackInfo[appState.track].en;
-    badge.setAttribute('title', trackInfo[appState.track].ar);
-  }
+  setText('contactFormNameLabel', t.contact_form_name_label);
+  setText('contactFormEmailLabel', t.contact_email);
+  setText('contactFormMessageLabel', t.contact_form_message_label);
+  setText('contactSubmitBtn', t.contact_form_submit);
 
   document.documentElement.lang = appState.lang;
   document.documentElement.dir = appState.lang === 'ar' ? 'rtl' : 'ltr';
-
-  if (appState.lastTicket) {
-    registry.get('renderTicketPanel')?.(appState.lastTicket);
-  }
 }
