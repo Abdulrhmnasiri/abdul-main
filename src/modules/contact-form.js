@@ -18,8 +18,7 @@ export function initContactForm() {
   if (!form) return;
 
   // Guard against a second initContactForm() call attaching a duplicate
-  // submit listener (the host environment has, on occasion, fired
-  // DOMContentLoaded more than once).
+  // submit listener if this function is ever invoked more than once.
   if (form.dataset.bound === 'true') return;
   form.dataset.bound = 'true';
 

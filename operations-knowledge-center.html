@@ -48,26 +48,43 @@
     <p class="dossier-intro" id="opsHeroIntro"></p>
   </section>
 
-  <main class="dossier-main ops-main">
-    <article class="dossier-section reveal" id="ops-sec-problem"></article>
-    <article class="dossier-section reveal" id="ops-sec-mkdocs"></article>
-    <article class="dossier-section reveal" id="ops-sec-architecture"></article>
-    <article class="dossier-section reveal" id="ops-sec-embedded"></article>
-    <article class="dossier-section reveal" id="ops-sec-assistant"></article>
-    <article class="dossier-section reveal" id="ops-sec-guidance"></article>
-    <article class="dossier-section reveal" id="ops-sec-impact"></article>
-    <article class="dossier-section reveal" id="ops-sec-escalation"></article>
-    <article class="dossier-section reveal" id="ops-sec-tradeoffs"></article>
-    <article class="dossier-section reveal" id="ops-sec-role"></article>
-    <article class="dossier-section reveal" id="ops-sec-current"></article>
+  <!-- Mobile section strip control -->
+  <div class="dossier-mobile-files">
+    <button type="button" id="opsMobileFilesToggle" class="mobile-files-toggle" aria-expanded="false" aria-controls="opsMobileFilesStrip">
+      <span id="opsMobileFilesLabel">Case Study Sections</span>
+      <span class="mobile-files-icon" aria-hidden="true"></span>
+    </button>
+    <nav id="opsMobileFilesStrip" class="mobile-files-strip" aria-label="Case Study Sections"></nav>
+  </div>
 
-    <p class="dossier-back">
-      <a href="index.html" id="opsBackLink" class="dossier-back-link">
-        <span class="dossier-back-arrow" aria-hidden="true">←</span>
-        <span class="dossier-back-text" id="opsBackText">Back to Homepage</span>
-      </a>
-    </p>
-  </main>
+  <!-- Dossier layout: section-nav + main content -->
+  <div class="dossier-layout">
+    <aside class="dossier-filetree" aria-label="Case Study Sections">
+      <p class="filetree-heading" id="opsFiletreeHeading">Case Study Sections</p>
+      <nav id="opsFiletreeNav" class="filetree-nav"></nav>
+    </aside>
+
+    <main class="dossier-main">
+      <article class="dossier-section reveal" id="ops-sec-problem"></article>
+      <article class="dossier-section reveal" id="ops-sec-mkdocs"></article>
+      <article class="dossier-section reveal" id="ops-sec-architecture"></article>
+      <article class="dossier-section reveal" id="ops-sec-embedded"></article>
+      <article class="dossier-section reveal" id="ops-sec-assistant"></article>
+      <article class="dossier-section reveal" id="ops-sec-guidance"></article>
+      <article class="dossier-section reveal" id="ops-sec-impact"></article>
+      <article class="dossier-section reveal" id="ops-sec-escalation"></article>
+      <article class="dossier-section reveal" id="ops-sec-tradeoffs"></article>
+      <article class="dossier-section reveal" id="ops-sec-role"></article>
+      <article class="dossier-section reveal" id="ops-sec-current"></article>
+
+      <p class="dossier-back">
+        <a href="index.html" id="opsBackLink" class="dossier-back-link">
+          <span class="dossier-back-arrow" aria-hidden="true">←</span>
+          <span class="dossier-back-text" id="opsBackText">Back to Homepage</span>
+        </a>
+      </p>
+    </main>
+  </div>
 
   <footer class="footer">
     <p id="footerText">© 2026 Abdulrahman Asiri All rights reserved</p>

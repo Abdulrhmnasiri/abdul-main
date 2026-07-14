@@ -1,8 +1,9 @@
-const CACHE_NAME = 'aa-portfolio-v38';
-// Public app shell = the one-page founder-identity homepage only. systems.html and
-// casebook.html remain hidden, unlinked drafts. research.html and
-// operations-knowledge-center.html are linked from the homepage but stay
-// noindex and unprecached by policy; they load from network when opened directly.
+const CACHE_NAME = 'aa-portfolio-v39';
+// Public app shell = the one-page personal-identity homepage only. systems.html
+// and casebook.html remain hidden, unlinked drafts outside the public tree.
+// research.html and operations-knowledge-center.html are approved, public,
+// and indexable, but stay unprecached by policy — they always load fresh
+// from the network so their content and section navigation never go stale.
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -40,9 +41,12 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
+      // Only ever remove this app's own previous cache generations. A cache
+      // name that doesn't start with our prefix belongs to something else on
+      // the origin and must be left alone.
       .then(cacheNames => Promise.all(
         cacheNames
-          .filter(name => name !== CACHE_NAME)
+          .filter(name => name.startsWith('aa-portfolio-') && name !== CACHE_NAME)
           .map(name => caches.delete(name))
       ))
       .then(() => self.clients.claim())
@@ -50,9 +54,27 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  const request = event.request;
+
+  // Only ever handle simple GET requests for this origin's own assets. POSTs
+  // (Web3Forms submissions) and every cross-origin request (Web3Forms,
+  // hCaptcha, Google Fonts, LinkedIn, GitHub, or anything else) pass straight
+  // through to the network untouched.
+  if (request.method !== 'GET') return;
+  if (new URL(request.url).origin !== self.location.origin) return;
+
+  const isNavigation = request.mode === 'navigate' || request.destination === 'document';
+
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request).catch(() => caches.match('./index.html'));
+    caches.match(request).then(cached => {
+      if (cached) return cached;
+      return fetch(request).catch(() => {
+        // Offline fallback only makes sense for an HTML page navigation. A
+        // missing script, stylesheet, image, font, or PDF must fail as
+        // itself — never silently replaced with the homepage.
+        if (isNavigation) return caches.match('./index.html');
+        return Response.error();
+      });
     })
   );
 });

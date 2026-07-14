@@ -2,10 +2,30 @@
 // Center project. Content is intentionally domain-neutral: no client name,
 // no ministry/government references, no internal system name, no real
 // operational-module vocabulary from the source project.
+
+// Fast-navigation entries for the case study. `id` matches the existing
+// `ops-sec-*` article ids in operations-knowledge-center.html; `sectionKey`
+// points to the matching key under `sections` below for the display title.
+export const opsFileTree = [
+  { id: 'problem', sectionKey: 'problem', num_ar: '٠١', num_en: '01' },
+  { id: 'mkdocs', sectionKey: 'whyMkdocs', num_ar: '٠٢', num_en: '02' },
+  { id: 'architecture', sectionKey: 'architecture', num_ar: '٠٣', num_en: '03' },
+  { id: 'embedded', sectionKey: 'embedded', num_ar: '٠٤', num_en: '04' },
+  { id: 'assistant', sectionKey: 'assistant', num_ar: '٠٥', num_en: '05' },
+  { id: 'guidance', sectionKey: 'guidance', num_ar: '٠٦', num_en: '06' },
+  { id: 'impact', sectionKey: 'impact', num_ar: '٠٧', num_en: '07' },
+  { id: 'escalation', sectionKey: 'escalation', num_ar: '٠٨', num_en: '08' },
+  { id: 'tradeoffs', sectionKey: 'tradeoffs', num_ar: '٠٩', num_en: '09' },
+  { id: 'role', sectionKey: 'role', num_ar: '١٠', num_en: '10' },
+  { id: 'current', sectionKey: 'current', num_ar: '١١', num_en: '11' },
+];
+
 export const opsI18n = {
   ar: {
     page_title: 'مركز معرفة ودعم تشغيلي مدمج داخل التطبيق — عبدالرحمن عسيري',
     meta_description: 'دراسة حالة تطبيقية لمركز معرفة تشغيلي مبني بـMarkdown وMkDocs، مدمج داخل تجربة تطبيق حقيقي بواجهة عربية مخصصة ومساعد تنقّل بالكلمات المفتاحية.',
+
+    filetree_label: 'أقسام دراسة الحالة',
 
     hero: {
       kicker: 'عمل تطبيقي · هندسة معرفة وتجربة دعم',
@@ -102,6 +122,8 @@ export const opsI18n = {
   en: {
     page_title: 'Embedded Operational Knowledge & Support Center — Abdulrahman Asiri',
     meta_description: 'An applied case study of an operational knowledge center authored in Markdown with MkDocs, embedded inside a real application with a fully customized Arabic interface and a keyword-based navigation assistant.',
+
+    filetree_label: 'Case Study Sections',
 
     hero: {
       kicker: 'Applied Systems Work · Knowledge Engineering & Support Experience',

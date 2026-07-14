@@ -1,4 +1,4 @@
-import { opsI18n } from '../data/operations-translations.js';
+import { opsI18n, opsFileTree } from '../data/operations-translations.js';
 import { siteI18n } from '../data/site-translations.js';
 
 function esc(s) {
@@ -94,6 +94,16 @@ function renderCurrent(s) {
   return fileHeader(s.title) + `<p>${esc(s.body)}</p>`;
 }
 
+function renderFileNav(lang) {
+  const t = opsI18n[lang];
+  const numKey = lang === 'ar' ? 'num_ar' : 'num_en';
+  return opsFileTree.map(f => `
+    <a href="#ops-sec-${f.id}" data-target="ops-sec-${f.id}" class="filetree-link">
+      <span class="filetree-file">${esc(f[numKey])}</span>
+      <span class="filetree-title">${esc(t.sections[f.sectionKey].title)}</span>
+    </a>`).join('');
+}
+
 function setHtml(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
@@ -114,6 +124,11 @@ export function applyOperationsTranslations(lang) {
   setText('opsHeroKicker', t.hero.kicker);
   setText('opsHeroTitle', t.hero.title);
   setText('opsHeroIntro', t.hero.intro);
+
+  setText('opsFiletreeHeading', t.filetree_label);
+  setText('opsMobileFilesLabel', t.filetree_label);
+  setHtml('opsFiletreeNav', renderFileNav(lang));
+  setHtml('opsMobileFilesStrip', renderFileNav(lang));
 
   setHtml('ops-sec-problem', renderProblem(t.sections.problem));
   setHtml('ops-sec-mkdocs', renderWhyMkdocs(t.sections.whyMkdocs));
