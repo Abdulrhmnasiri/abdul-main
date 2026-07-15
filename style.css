@@ -1075,6 +1075,26 @@ html[dir="rtl"] .h-captcha { transform-origin: right top; }
 .compare-box--chosen { color: var(--text); }
 .compare-box--chosen p { color: var(--text); font-weight: 500; }
 
+/* Three-stage example — initial description, the question that surfaces its
+   context, and the wording after clarification — as a single stacked flow
+   divided by rules, not colored cards. As with .compare-box, typographic
+   weight (not accent borders) carries the progression, keeping the palette
+   restrained and readable at every width. */
+.example-stages {
+  margin-top: 14px;
+  margin-bottom: 26px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.example-stage { padding: 14px 0; }
+.example-stage:first-child { padding-top: 0; }
+.example-stage:last-child { padding-bottom: 0; }
+.example-stage + .example-stage { border-top: 1px solid var(--border); }
+.example-stage p { font-size: 0.89rem; margin-bottom: 0; line-height: 1.7; }
+.example-stage--initial p { color: var(--text-faint); }
+.example-stage--question p { color: var(--text-muted); }
+.example-stage--clarified p { color: var(--text); font-weight: 500; }
+
 .dossier-back { max-width: 680px; margin: 0 auto; padding: 20px 0 40px; }
 /* direction: ltr keeps the arrow the first flex item — physically on the
    left — in both Arabic and English; the text span below restores its

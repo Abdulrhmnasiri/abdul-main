@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aa-portfolio-v41';
+const CACHE_NAME = 'aa-portfolio-v42';
 // Public app shell = the one-page personal-identity homepage only. systems.html
 // and casebook.html remain hidden, unlinked drafts outside the public tree.
 // research.html and operations-knowledge-center.html are approved, public,

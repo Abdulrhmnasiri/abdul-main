@@ -54,14 +54,18 @@ function renderExpression(s) {
     `<p>${esc(s.examplesIntro)}</p>` +
     s.examples.map(ex => `
       <p class="dossier-diagram-title">${esc(ex.directionLabel)}</p>
-      <div class="compare-row">
-        <div class="compare-box compare-box--rejected">
-          <span class="dossier-callout-tag">${esc(s.beforeLabel)}</span>
-          <p>${esc(ex.before)}</p>
+      <div class="example-stages">
+        <div class="example-stage example-stage--initial">
+          <span class="dossier-callout-tag">${esc(s.initialLabel)}</span>
+          <p>${esc(ex.initial)}</p>
         </div>
-        <div class="compare-box compare-box--chosen">
-          <span class="dossier-callout-tag">${esc(s.afterLabel)}</span>
-          <p>${esc(ex.after)}</p>
+        <div class="example-stage example-stage--question">
+          <span class="dossier-callout-tag">${esc(s.questionLabel)}</span>
+          <p>${esc(ex.question)}</p>
+        </div>
+        <div class="example-stage example-stage--clarified">
+          <span class="dossier-callout-tag">${esc(s.clarifiedLabel)}</span>
+          <p>${esc(ex.clarified)}</p>
         </div>
       </div>`).join('') +
     noteCallout(s.noteLabel, s.note, true);
