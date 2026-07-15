@@ -8,7 +8,8 @@ export const researchFileTree = [
   { id: 'context', file_ar: '٠٥', file_en: '05' },
   { id: 'work', file_ar: '٠٦', file_en: '06' },
   { id: 'skills', file_ar: '٠٧', file_en: '07' },
-  { id: 'maturity', file_ar: '٠٨', file_en: '08' },
+  { id: 'techSkills', file_ar: '٠٨', file_en: '08' },
+  { id: 'maturity', file_ar: '٠٩', file_en: '09' },
 ];
 
 export const researchI18n = {
@@ -19,8 +20,8 @@ export const researchI18n = {
     filetree_label: 'أقسام المبادرة',
 
     hero: {
-      kicker: 'مبادرة بحث وتطوير لمنتج مهني',
-      title: 'خبرتك حقيقية، وتستحق صياغة تُظهر قيمتها الفعلية.',
+      kicker: 'بحث تطبيقي في فهم الخبرة المهنية',
+      title: 'بين ما يفعله الشخص فعليًا وما يظهر في ملفه المهني فجوة تستحق الفهم.',
       subtitle: 'كثيرون يحملون مسؤوليات مهنية ذات قيمة حقيقية، لكن الصياغة اليومية لا تنقل هذه القيمة إلى مسؤولي التوظيف أو الأنظمة الشائعة التي تفرز السير الذاتية.',
       intro: 'أدوات السير الذاتية التقليدية، وحتى الذكاء الاصطناعي التوليدي العام، قد تُحسّن شكل الصياغة، لكنها غالبًا لا تفهم السياق الحقيقي خلف العمل، وقد تقبل ادعاءات غامضة أو مبالغًا فيها دون تحدٍّ، أو تضيف مسؤوليات ومقاييس لم يؤكدها صاحب الخبرة. تحاول هذه المبادرة مسارًا مختلفًا: مساعدة صاحب الخبرة على اكتشاف قيمتها الحقيقية، ومعايرتها، والتعبير عنها بقوة أكبر دون تجاوز حدود الحقيقة المهنية.',
       statusNote: 'مبادرة بحث وتطوير خاصة، لا تزال قيد البناء والتحقق.',
@@ -132,6 +133,19 @@ export const researchI18n = {
         note: 'الصفة الدقيقة هنا هي: مؤسس، ومالك قرار المنتج، ومصمم فلسفة المنتج ونهج تنفيذه المحكوم — لا مسمى مثل "مهندس برمجيات أول" أو "عالم أبحاث ذكاء اصطناعي" أو "مستشار مهني مرخّص".',
       },
 
+      techSkills: {
+        title: 'مهارات تقنية تطورت بالممارسة',
+        intro: 'لم تكن المبادرة تمرينًا نظريًا أو فكرة منتج فقط، بل أصبحت مساحة تطبيق عملية لتطوير قدرات هندسية من خلال كود واختبارات ووثائق وقرارات مرتبطة بمشكلة حقيقية.',
+        list: [
+          { title: 'هندسة البرمجيات والبنية', body: 'طبّقت من خلال بناء المبادرة مبادئ فصل الاهتمامات وتقسيم النظام إلى طبقات مستقلة قابلة للاختبار والاستبدال، وتعاملت عمليًا مع حدود تكامل مستقلة عن مزوّد الذكاء الاصطناعي تحديدًا، بحيث يمكن استبدال مكوّن التوليد دون المساس بمنطق المنتج.' },
+          { title: 'تطوير الخدمات وواجهات API', body: 'مارست من خلال التنفيذ بناء خدمة خلفية حقيقية، شملت تصميم عقود طلب واستجابة، والتحقق من صحة المدخلات، ومعالجة الأخطاء، ومسارات عديدة بلا حالة، إلى جانب اختبارات تكامل لهذه المسارات.' },
+          { title: 'الاختبارات وضمان الجودة', body: 'طوّرت فهمًا عمليًا لكتابة اختبارات الوحدة والتكامل، وتقييم السلوك بسيناريوهات واقعية لا الاكتفاء باختبار تنفيذ الكود فقط، عبر مجموعة اختبارات فعلية متنامية غطّت طبقات مختلفة من المنتج.' },
+          { title: 'الأتمتة وإدارة سير العمل التقني', body: 'استخدمت التحكم بالإصدارات بانضباط عبر مئات الالتزامات الموصوفة والمتتبَّعة، وراجعت الفروقات قبل كل حفظ، وحافظت على تغييرات محدودة النطاق وقابلة للتراجع، وكتبت وشغّلت نصوصًا برمجية صغيرة لأتمتة مهام مثل التحقق من الأنواع وتوليد تقارير مراجعة فعلية.' },
+          { title: 'التوثيق الهندسي وإدارة القرارات', body: 'تعاملت عمليًا مع تحويل قرارات المنتج ومخاطره وافتراضاته وحدوده إلى وثائق هندسية قابلة للمراجعة، بدل تركها داخل محادثات أو ذاكرة مؤقتة.' },
+          { title: 'البيانات وSQL', body: 'تعاملت عمليًا مع نمذجة بيانات علائقية عبر مخطّطات فعلية وسلسلة ترحيلات حقيقية ومتتابعة لقاعدة البيانات، شملت تعاملًا مباشرًا مع ملفات ترحيل مكتوبة بلغة SQL، وفهمًا عمليًا للعلاقات بين الكيانات وقيود سلامة البيانات.' },
+        ],
+      },
+
       maturity: {
         title: 'الحالة الحالية وحدودها',
         intro: 'هذه مبادرة بحث وتطوير لمنتج مهني قيد البناء والتحقق.',
@@ -158,8 +172,8 @@ export const researchI18n = {
     filetree_label: 'Initiative sections',
 
     hero: {
-      kicker: 'A Product Research & Development Initiative',
-      title: 'Real experience deserves wording that shows its true value.',
+      kicker: 'Applied Research into Professional Experience',
+      title: 'There is a gap between what people actually do and what appears in their professional profiles — a gap worth understanding.',
       subtitle: "Many people carry real professional responsibility, but everyday wording doesn't convey that value to recruiters or the systems commonly used to screen resumes.",
       intro: "Traditional CV tools, and even generic generative AI, may polish the surface wording, but they often miss the real context behind the work, and may accept vague or inflated claims without challenge, or add responsibilities and metrics the person never confirmed. This initiative takes a different path: helping people discover the real value of their experience, calibrate it, and express it more strongly without exceeding their professional truth.",
       statusNote: 'A private research-and-development initiative, still under active development.',
@@ -269,6 +283,19 @@ export const researchI18n = {
         ],
         noteLabel: 'The accurate title',
         note: "The accurate description here is: founder, product-direction owner, and designer of the product's philosophy and governed execution approach — not titles like \"Senior Software Architect,\" \"AI Research Scientist,\" or \"Licensed Career Consultant.\"",
+      },
+
+      techSkills: {
+        title: 'Technical Skills Developed Through Practice',
+        intro: "The initiative wasn't a theoretical exercise or just a product idea — it became a practical space for developing engineering capability through real code, tests, documentation, and decisions tied to a genuine problem.",
+        list: [
+          { title: 'Software Architecture', body: 'Through building the initiative, I applied separation-of-concerns principles and split the system into independent, testable, and replaceable layers, and worked hands-on with integration boundaries kept independent from any specific AI provider, so the generation component can be replaced without touching product logic.' },
+          { title: 'Backend and API Engineering', body: 'Through implementation, I practiced building a real backend service, including request/response contracts, input validation, error handling, multiple stateless routes, and integration tests for those routes.' },
+          { title: 'Automated Testing and Quality Engineering', body: 'I developed practical experience writing unit and integration tests and evaluating behavior against realistic scenarios rather than only exercising code paths, through a real and growing test suite covering different layers of the product.' },
+          { title: 'Automation and Engineering Workflow', body: 'I used Git version control with discipline across hundreds of tracked, descriptive commits, reviewed diffs before each save, and kept changes scoped and reversible. I also wrote and ran small scripts to automate tasks such as type-checking and generating real review reports.' },
+          { title: 'Technical Documentation and Engineering Decision Management', body: 'I practiced turning product decisions, risks, assumptions, and limitations into reviewable engineering documentation instead of leaving them in conversations or temporary memory.' },
+          { title: 'Data, Databases, and SQL', body: 'I worked hands-on with relational data modeling through real schemas and a genuine sequence of database migrations, including direct work with migration files written in SQL, developing a practical understanding of entity relationships and data-integrity constraints.' },
+        ],
       },
 
       maturity: {

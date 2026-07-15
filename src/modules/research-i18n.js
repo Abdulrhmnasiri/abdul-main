@@ -92,6 +92,12 @@ function renderSkills(s) {
     noteCallout(s.noteLabel, s.note, true);
 }
 
+function renderTechSkills(s) {
+  return fileHeader(s.title) +
+    `<p>${esc(s.intro)}</p>` +
+    numberedList(s.list);
+}
+
 function renderMaturity(s) {
   return fileHeader(s.title) +
     `<p>${esc(s.intro)}</p>` +
@@ -145,6 +151,7 @@ export function applyResearchTranslations(lang) {
   setHtml('sec-context', renderContext(t.sections.context));
   setHtml('sec-work', renderWork(t.sections.work));
   setHtml('sec-skills', renderSkills(t.sections.skills));
+  setHtml('sec-techSkills', renderTechSkills(t.sections.techSkills));
   setHtml('sec-maturity', renderMaturity(t.sections.maturity));
 
   setText('navHome', lang === 'ar' ? 'الرئيسية' : 'Home');
