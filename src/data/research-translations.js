@@ -85,7 +85,7 @@ export const researchI18n = {
       context: {
         title: 'مرجعية مهنية مرتبطة بالسوق السعودي',
         body: [
-          'تستند المبادرة إلى بحث منظم في مصادر سعودية رسمية ومهنية متاحة، إلى جانب مراجع مرتبطة بالأدوار والقطاعات التي تغطيها التجربة عبر الاتجاهات المهنية الخمسة. تُستخدم هذه المصادر لفهم لغة المسؤوليات والقيمة المهنية في السياق المحلي — لا لإضافة معلومات إلى خبرة المستخدم أو تصنيفها رسميًا — ولا تعتمد المبادرة على مصدر واحد، بل على مقارنة مراجع متعددة ومراجعتها.',
+          'تسترشد المبادرة ببحث منظم في مصادر سعودية رسمية ومهنية متاحة، ومراجع مرتبطة بعدد من الأدوار والقطاعات التي تغطيها التجربة، بهدف جعل التحليل والصياغة أقرب إلى لغة سوق العمل السعودي. لا تُستخدم هذه المصادر لإضافة معلومات إلى خبرة المستخدم أو تصنيفها رسميًا، ولا تعتمد المبادرة على مصدر واحد، بل على مراجعة مصادر متعددة والمقارنة بينها.',
           'يبقى ما يؤكده المستخدم عن خبرته هو المرجع الأعلى، بينما تعمل هذه المصادر كسياق مهني يساعد على طرح سؤال أوضح واقتراح صياغة أقرب للغة السوق — دون ادعاء اعتماد رسمي أو تغطية شاملة لكل معايير التوظيف في السوق السعودي.',
         ],
         trustTitle: 'قواعد الثقة',
@@ -224,7 +224,7 @@ export const researchI18n = {
       context: {
         title: 'Informed by Saudi Professional Context',
         body: [
-          "This initiative draws on structured research into publicly available Saudi official and professional sources, alongside references tied to the roles and sectors covered across its five professional directions. These sources are used to understand the language of responsibility and professional value in the local context — not to add information to a user's experience or officially classify it — and no single source is relied on; references are compared and cross-checked.",
+          "This initiative is guided by structured research into publicly available Saudi official and professional sources, along with references tied to a number of the roles and sectors it covers, aiming to bring its analysis and wording closer to the language of the Saudi labor market. These sources are not used to add information to a user's experience or to officially classify it, and no single source is relied upon — references are reviewed and compared.",
           "What the user confirms about their own experience remains the highest authority. These sources serve as professional context that helps ask a clearer question and suggest wording closer to market language — without claiming official accreditation or comprehensive coverage of every hiring standard in the Saudi market.",
         ],
         trustTitle: 'Trust Rules',
