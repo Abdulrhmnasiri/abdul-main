@@ -5,9 +5,10 @@ export const researchFileTree = [
   { id: 'consultation', file_ar: '٠٢', file_en: '02' },
   { id: 'expression', file_ar: '٠٣', file_en: '03' },
   { id: 'domains', file_ar: '٠٤', file_en: '04' },
-  { id: 'work', file_ar: '٠٥', file_en: '05' },
-  { id: 'skills', file_ar: '٠٦', file_en: '06' },
-  { id: 'maturity', file_ar: '٠٧', file_en: '07' },
+  { id: 'context', file_ar: '٠٥', file_en: '05' },
+  { id: 'work', file_ar: '٠٦', file_en: '06' },
+  { id: 'skills', file_ar: '٠٧', file_en: '07' },
+  { id: 'maturity', file_ar: '٠٨', file_en: '08' },
 ];
 
 export const researchI18n = {
@@ -81,6 +82,22 @@ export const researchI18n = {
         note: 'اختيار المجال يساعد على فهم السياق المهني بشكل أوضح، لكنه لا يحدد تلقائيًا مسمى وظيفيًا نهائيًا أو هوية مهنية ثابتة.',
       },
 
+      context: {
+        title: 'مرجعية مهنية مرتبطة بالسوق السعودي',
+        body: [
+          'تستند المبادرة إلى بحث منظم في مصادر سعودية رسمية ومهنية متاحة، إلى جانب مراجع مرتبطة بالأدوار والقطاعات التي تغطيها التجربة عبر الاتجاهات المهنية الخمسة. تُستخدم هذه المصادر لفهم لغة المسؤوليات والقيمة المهنية في السياق المحلي — لا لإضافة معلومات إلى خبرة المستخدم أو تصنيفها رسميًا — ولا تعتمد المبادرة على مصدر واحد، بل على مقارنة مراجع متعددة ومراجعتها.',
+          'يبقى ما يؤكده المستخدم عن خبرته هو المرجع الأعلى، بينما تعمل هذه المصادر كسياق مهني يساعد على طرح سؤال أوضح واقتراح صياغة أقرب للغة السوق — دون ادعاء اعتماد رسمي أو تغطية شاملة لكل معايير التوظيف في السوق السعودي.',
+        ],
+        trustTitle: 'قواعد الثقة',
+        trustIntro: 'الحوكمة هنا لا تعني اعتمادًا قانونيًا أو رقابيًا، بل قواعد منتج تحدد ما يستطيع النظام اقتراحه، وما يحتاج إلى تأكيد المستخدم، وما لا ينبغي تحويله إلى ادعاء مهني.',
+        trustList: [
+          'المعلومة المهنية التي يؤكدها المستخدم هي المرجع الأعلى.',
+          'المواد المرجعية توفر سياقًا مهنيًا، ولا تتحول إلى حقيقة خاصة بالمستخدم.',
+          'تبقى اقتراحات الذكاء الاصطناعي مقترحات حتى يراجعها المستخدم ويقرر بشأنها.',
+          'نقص السياق يستدعي سؤالًا توضيحيًا، لا افتراضًا واثقًا.',
+        ],
+      },
+
       work: {
         title: 'العمل المُنجز والقرارات المتخذة',
         intro: 'هذا عمل منتج وهندسي فعلي، وليس مجرد فكرة. حتى الآن، شمل العمل:',
@@ -100,16 +117,16 @@ export const researchI18n = {
 
       skills: {
         title: 'المهارات المُثبتة من خلال هذا العمل',
-        intro: 'كل مهارة هنا مرتبطة بقرار أو تصميم فعلي داخل المبادرة، لا بمجرد كلمة مفتاحية في سيرة ذاتية.',
+        intro: 'كل قدرة هنا ظهرت عبر بحث فعلي، وقرارات منتجية، وتوثيق، وتصميم، وتنفيذ، وتقييم داخل المبادرة — لا بمجرد كلمة مفتاحية في سيرة ذاتية.',
         list: [
           { title: 'صياغة استراتيجية المنتج واكتشافه', body: 'أُعيد تعريف مشكلة "كتابة السيرة الذاتية" الظاهرة كمشكلة أعمق تتعلق بالفهم المهني والثقة والتعبير المسؤول، بعد تقصٍّ للافتراضات ومشكلات المستخدمين الفعلية والفجوات المهنية، وتحويلها إلى اتجاه منتج واضح.' },
-          { title: 'تصميم عرض القيمة والأصل المهني', body: 'حُدّدت قيمة المبادرة باكتشاف القيمة المهنية الحقيقية والتعبير عنها ضمن أصل مهني منظم، لا بمجرد توليد نص منمّق.' },
-          { title: 'تصميم تجربة الاستشارة الموجّهة متعددة المجالات', body: 'صُممت التجربة لتوجيه المستخدم عبر الاكتشاف والتوضيح والاقتراح والتأكيد دون أن تتحول إلى نموذج طويل أو محادثة مفتوحة، مع مراعاة اختلاف هذه التجربة باختلاف خمسة اتجاهات مهنية بدل معاملة كل المسارات بالطريقة نفسها.' },
-          { title: 'حوكمة المنتج وحدود الحقيقة المهنية', body: 'حُدّدت حدود واضحة بين المعلومة المؤكدة من المستخدم، واقتراح النظام، والافتراض غير المؤكد، والادعاء غير المدعوم، وسلطة القرار النهائي للمستخدم — مع فصل تصميمي بين ما أكده المستخدم وما هو اقتراح أو سياق ناقص، دون كشف بنية البيانات الداخلية أو قواعد ترجيح المصادر.' },
+          { title: 'البحث المهني والسياق السعودي وتصميم عرض القيمة', body: 'رُوجعت مراجع مهنية ومصادر متاحة متعلقة بسوق العمل السعودي لفهم لغة الأدوار والمسؤوليات عبر القطاعات، دون ادعاء تمثيل شامل للسوق، واستُخدم هذا الفهم لتحديد قيمة المبادرة في اكتشاف القيمة المهنية الحقيقية والتعبير عنها ضمن أصل مهني منظم، لا بمجرد توليد نص منمّق.' },
+          { title: 'تصميم تجربة الاستشارة الموجّهة متعددة المجالات', body: 'صُممت التجربة لتوجيه المستخدم عبر الاكتشاف والتوضيح والاقتراح والتأكيد دون أن تتحول إلى نموذج طويل أو محادثة مفتوحة. رُوعي أن تختلف اللغة المهنية باختلاف خمسة اتجاهات — ليس ترجمة بين المجالات فقط، بل تصميم منتجي يراعي اختلاف المسؤوليات والأدلة والصياغة من مجال لآخر.' },
+          { title: 'تقييم المصادر وحدود الأدلة وحوكمة المنتج', body: 'قُورنت مراجع متعددة وحُوِّلت إلى سياق منتجي قابل للاستخدام بدل نسخها مباشرة إلى التجربة، مع حدود واضحة تفصل بين السياق المهني العام من المراجع، وما أكده المستخدم فعليًا، واقتراح النظام، وأي ادعاء غير مدعوم لا ينبغي تقديمه كحقيقة — وتحويل هذه المبادئ إلى قرارات وحدود سلوك قابلة للمراجعة، دون الإيحاء بخبرة قانونية أو اعتماد نظامي رسمي.' },
           { title: 'معمارية النظام والتكامل المستقل عن المزوّد', body: 'هُيكل المنتج في طبقات قابلة للفصل والاختبار، مع تجنّب الاعتماد على مزوّد ذكاء اصطناعي واحد.' },
           { title: 'التقييم السلوكي وضمان الجودة والاختبار الآلي', body: 'قُيِّمت الجودة عبر سلوكيات واقعية مثل الصياغة الضعيفة، ونقص السياق، والمبالغة غير المدعومة، وغموض الأقدمية الوظيفية، والطلبات غير الآمنة مهنيًا، وخضع سلوك النظام وحدود التنفيذ الهندسية للاختبار الآلي، دون نشر أعداد أو نسب تغطية داخلية.' },
-          { title: 'التوثيق التقني وإدارة القرارات', body: 'وُثِّقت قواعد المنتج ومخاطره وقراراته وافتراضاته وحدوده بشكل قابل للمراجعة، بدل تركها داخل محادثات ذكاء اصطناعي مؤقتة.' },
-          { title: 'إدارة النطاق والمخاطر والتنفيذ بمساعدة أدوات ذكاء اصطناعي', body: 'يُحافَظ على تمييز واضح بين ما تم تصميمه، وما نُفِّذ، وما اختُبر، وما لا يزال دون حل، وما يحتاج مراجعة متخصصة — مع مراعاة التعبير باللغة العربية والسياق المهني السعودي دون ادعاء تمثيل شامل للسوق، واستخدام أدوات ذكاء اصطناعي متعددة للبحث والتصميم والتنفيذ، بينما بقيت قرارات الاتجاه والقبول وتحمّل المخاطر والحكم النهائي بيد صاحب المبادرة.' },
+          { title: 'التوثيق التقني وتوليف نتائج البحث وإدارة القرارات', body: 'وُثِّقت قواعد المنتج ومخاطره وقراراته وافتراضاته وحدوده بشكل قابل للمراجعة، مع تلخيص ما استُخلص من المراجع المهنية في صورة مبادئ منتجية واضحة، بدل تركها داخل محادثات ذكاء اصطناعي مؤقتة.' },
+          { title: 'إدارة النطاق والمخاطر والتنفيذ بمساعدة أدوات ذكاء اصطناعي', body: 'يُحافَظ على تمييز واضح بين ما تم تصميمه، وما نُفِّذ، وما اختُبر، وما لا يزال دون حل، وما يحتاج مراجعة متخصصة، مع استخدام أدوات ذكاء اصطناعي متعددة للبحث والتصميم والتنفيذ، بينما بقيت قرارات الاتجاه والقبول وتحمّل المخاطر والحكم النهائي بيد صاحب المبادرة.' },
         ],
         noteLabel: 'الصفة الدقيقة',
         note: 'الصفة الدقيقة هنا هي: مؤسس، ومالك قرار المنتج، ومصمم فلسفة المنتج ونهج تنفيذه المحكوم — لا مسمى مثل "مهندس برمجيات أول" أو "عالم أبحاث ذكاء اصطناعي" أو "مستشار مهني مرخّص".',
@@ -204,6 +221,22 @@ export const researchI18n = {
         note: "Selecting a domain supports clearer contextual understanding — it doesn't automatically assign a final job title or a fixed professional identity.",
       },
 
+      context: {
+        title: 'Informed by Saudi Professional Context',
+        body: [
+          "This initiative draws on structured research into publicly available Saudi official and professional sources, alongside references tied to the roles and sectors covered across its five professional directions. These sources are used to understand the language of responsibility and professional value in the local context — not to add information to a user's experience or officially classify it — and no single source is relied on; references are compared and cross-checked.",
+          "What the user confirms about their own experience remains the highest authority. These sources serve as professional context that helps ask a clearer question and suggest wording closer to market language — without claiming official accreditation or comprehensive coverage of every hiring standard in the Saudi market.",
+        ],
+        trustTitle: 'Trust Rules',
+        trustIntro: "Governance here doesn't mean legal or regulatory approval — it means product rules that define what the system can suggest, what needs user confirmation, and what should never become a professional claim.",
+        trustList: [
+          'User-confirmed professional information is the highest authority.',
+          'Reference material provides professional context — it never becomes a fact about the user.',
+          'AI suggestions remain proposals until the user reviews and decides on them.',
+          'Missing context calls for a clarifying question, not a confident assumption.',
+        ],
+      },
+
       work: {
         title: 'Work Completed and Decisions Made',
         intro: "This is real product and engineering work, not just an idea. So far, the work has included:",
@@ -223,16 +256,16 @@ export const researchI18n = {
 
       skills: {
         title: 'Skills Demonstrated Through This Work',
-        intro: "Every skill here is tied to an actual decision or design inside the initiative, not just a keyword on a résumé.",
+        intro: "Every capability here emerged through actual research, product decisions, documentation, design, implementation, and evaluation work inside the initiative — not just a keyword on a résumé.",
         list: [
           { title: 'Product Strategy, Discovery, and Problem Framing', body: "Reframed an apparent 'CV-writing' problem into a deeper product problem involving professional understanding, trust, and responsible expression, after investigating assumptions, real user problems, and professional gaps, and converting them into a clear product direction." },
-          { title: 'Value Proposition and Professional-Asset Design', body: "Defined the initiative's value as discovering and expressing genuine professional value within a structured professional asset, rather than simply generating polished text." },
-          { title: 'Guided Consultation UX and Multi-Domain Experience Design', body: 'Designed the experience to guide users through discovery, clarification, suggestion, and confirmation without becoming a long form or an open-ended chatbot, while accounting for how the experience differs across five professional directions instead of treating every career path the same way.' },
-          { title: 'AI Product Governance and Professional-Truth Boundaries', body: "Defined clear boundaries between user-confirmed information, model suggestions, unconfirmed assumptions, unsupported claims, and the user's final decision authority — with a design-level separation between what's confirmed and what remains a suggestion or missing context, without exposing internal data structures or source-priority rules." },
+          { title: 'Professional Research, Saudi-Market Context, and Value Proposition', body: "Reviewed professional references and publicly available sources related to the Saudi labor market to understand role language and responsibilities across sectors, without claiming comprehensive market authority, and used that understanding to define the initiative's value: discovering genuine professional value and expressing it within a structured professional asset, rather than simply generating polished text." },
+          { title: 'Guided Consultation and Multi-Domain Experience Design', body: 'Designed the experience to guide users through discovery, clarification, suggestion, and confirmation without becoming a long form or an open-ended chatbot. Professional language was treated as genuinely different across five directions — not mere translation between domains, but product design informed by how responsibilities, evidence, and wording differ from one domain to another.' },
+          { title: 'Source Evaluation, Evidence Boundaries, and AI Product Governance', body: "Compared multiple references and translated them into usable product context rather than copying them directly into the experience, with clear boundaries between general professional context from references, what the user has actually confirmed, model-generated suggestions, and unsupported claims that should never be presented as facts — turning these principles into reviewable decisions and behavioral limits, without implying legal expertise or formal regulatory approval." },
           { title: 'System Architecture and Provider-Independent Integration', body: 'Structured the product into separable, testable layers, avoiding dependency on a single AI provider.' },
           { title: 'Behavioral Evaluation, Quality Assurance, and Automated Testing', body: 'Quality was evaluated through realistic behaviors such as weak wording, missing context, unsupported inflation, ambiguous seniority, and professionally unsafe requests, and both system behavior and engineering boundaries were covered by automated testing, without publishing internal counts or coverage figures.' },
-          { title: 'Technical Documentation and Decision Management', body: 'Product rules, risks, decisions, assumptions, and limitations were documented and made reviewable, rather than left inside temporary AI conversations.' },
-          { title: 'Scope, Risk, Trade-off, and AI-Assisted Execution Leadership', body: "A clear distinction is maintained between what's designed, implemented, tested, unresolved, and requiring specialized review — while considering Arabic-language expression and Saudi professional context without claiming comprehensive market authority, and using multiple AI tools for research, design, and implementation while direction, acceptance, risk ownership, and final judgment remained with the founder." },
+          { title: 'Technical Documentation, Research Synthesis, and Decision Management', body: 'Product rules, risks, decisions, assumptions, and limitations were documented and made reviewable, with findings from professional references distilled into clear product principles, rather than left inside temporary AI conversations.' },
+          { title: 'Scope, Risk, Trade-offs, and AI-Assisted Execution Leadership', body: "A clear distinction is maintained between what's designed, implemented, tested, unresolved, and requiring specialized review, using multiple AI tools for research, design, and implementation while direction, acceptance, risk ownership, and final judgment remained with the founder." },
         ],
         noteLabel: 'The accurate title',
         note: "The accurate description here is: founder, product-direction owner, and designer of the product's philosophy and governed execution approach — not titles like \"Senior Software Architect,\" \"AI Research Scientist,\" or \"Licensed Career Consultant.\"",

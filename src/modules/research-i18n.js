@@ -71,6 +71,14 @@ function renderDomains(s) {
     noteCallout(s.noteLabel, s.note, true);
 }
 
+function renderContext(s) {
+  return fileHeader(s.title) +
+    paragraphs(s.body) +
+    `<h3>${esc(s.trustTitle)}</h3>` +
+    `<p>${esc(s.trustIntro)}</p>` +
+    `<ul class="dossier-boundaries">${s.trustList.map(i => `<li>${esc(i)}</li>`).join('')}</ul>`;
+}
+
 function renderWork(s) {
   return fileHeader(s.title) +
     `<p>${esc(s.intro)}</p>` +
@@ -134,6 +142,7 @@ export function applyResearchTranslations(lang) {
   setHtml('sec-consultation', renderConsultation(t.sections.consultation));
   setHtml('sec-expression', renderExpression(t.sections.expression));
   setHtml('sec-domains', renderDomains(t.sections.domains));
+  setHtml('sec-context', renderContext(t.sections.context));
   setHtml('sec-work', renderWork(t.sections.work));
   setHtml('sec-skills', renderSkills(t.sections.skills));
   setHtml('sec-maturity', renderMaturity(t.sections.maturity));
