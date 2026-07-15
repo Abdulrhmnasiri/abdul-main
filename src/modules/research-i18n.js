@@ -50,17 +50,20 @@ function renderConsultation(s) {
 function renderExpression(s) {
   return fileHeader(s.title) +
     paragraphs(s.body) +
-    `<p class="dossier-diagram-title">${esc(s.exampleLabel)}</p>` +
-    `<div class="compare-row">
-      <div class="compare-box compare-box--rejected">
-        <span class="dossier-callout-tag">${esc(s.beforeLabel)}</span>
-        <p>${esc(s.before)}</p>
-      </div>
-      <div class="compare-box compare-box--chosen">
-        <span class="dossier-callout-tag">${esc(s.afterLabel)}</span>
-        <p>${esc(s.after)}</p>
-      </div>
-    </div>` +
+    `<h3>${esc(s.examplesLabel)}</h3>` +
+    `<p>${esc(s.examplesIntro)}</p>` +
+    s.examples.map(ex => `
+      <p class="dossier-diagram-title">${esc(ex.directionLabel)}</p>
+      <div class="compare-row">
+        <div class="compare-box compare-box--rejected">
+          <span class="dossier-callout-tag">${esc(s.beforeLabel)}</span>
+          <p>${esc(ex.before)}</p>
+        </div>
+        <div class="compare-box compare-box--chosen">
+          <span class="dossier-callout-tag">${esc(s.afterLabel)}</span>
+          <p>${esc(ex.after)}</p>
+        </div>
+      </div>`).join('') +
     noteCallout(s.noteLabel, s.note, true);
 }
 
