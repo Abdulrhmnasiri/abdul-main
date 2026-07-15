@@ -38,7 +38,7 @@ function renderAsset(s) {
   return fileHeader(s.title) +
     paragraphs(s.body) +
     `<ul class="dossier-boundaries">${s.list.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` +
-    noteCallout(s.noteLabel, s.note, true);
+    (s.note ? noteCallout(s.noteLabel, s.note, true) : '');
 }
 
 function renderConsultation(s) {
@@ -89,7 +89,7 @@ function renderSkills(s) {
   return fileHeader(s.title) +
     `<p>${esc(s.intro)}</p>` +
     numberedList(s.list) +
-    noteCallout(s.noteLabel, s.note, true);
+    (s.note ? noteCallout(s.noteLabel, s.note, true) : '');
 }
 
 function renderTechSkills(s) {
@@ -102,7 +102,7 @@ function renderMaturity(s) {
   return fileHeader(s.title) +
     `<p>${esc(s.intro)}</p>` +
     `<ul class="dossier-boundaries">${s.list.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` +
-    `<p>${esc(s.closing)}</p>`;
+    (s.closing ? `<p>${esc(s.closing)}</p>` : '');
 }
 
 function renderFileNav(lang) {
