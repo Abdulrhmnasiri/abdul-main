@@ -1035,69 +1035,6 @@ html[dir="rtl"] .h-captcha { transform-origin: right top; }
 
 /* Diagrams — the one place a bordered container is expected */
 .dossier-diagram-title { font-size: 0.85rem; font-weight: 700; color: var(--text-faint); margin-bottom: 14px; }
-.flow-diagram-wrap { margin: 4px 0 18px; }
-.flow-diagram {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-}
-.flow-node {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-}
-/* Visible but secondary — blue stays reserved for links, focus states, and
-   verified-behavior emphasis, not for connective diagram furniture. */
-.flow-arrow { color: var(--text-secondary); font-size: 1.1rem; display: flex; align-items: center; }
-
-.flow-branch-outcome { margin-top: 14px; }
-
-/* Decision outcomes — read as a small outcome list under the flow diagram,
-   not a pair of colored status cards. Solid vs. dashed divider carries the
-   yes/no distinction instead of an accent border. */
-.decision-outcomes {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  border-top: 1px solid var(--border);
-}
-.decision-outcome {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 11px 2px;
-  font-size: 0.87rem;
-  font-weight: 500;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-muted);
-}
-.decision-outcome--yes { color: var(--text); font-weight: 600; }
-.decision-outcome--no { color: var(--text-faint); }
-.decision-mark { flex-shrink: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--text-secondary); }
-
-/* Verification states — inline tokens, not filled panels */
-.verify-states { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 18px; }
-.verify-state {
-  flex: 1 1 160px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.verify-state-label { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.76rem; font-weight: 700; color: var(--text); }
-.verify-state-desc { font-size: 0.85rem; color: var(--text-muted); }
 
 /* Evaluation types */
 .eval-types { display: flex; flex-direction: column; gap: 4px; margin-bottom: 22px; }
@@ -1119,23 +1056,6 @@ html[dir="rtl"] .h-captcha { transform-origin: right top; }
 .eval-type-title { font-size: 0.94rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
 .eval-type-body { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; }
 
-.dossier-clarification {
-  border-inline-start: 2px solid var(--border-strong);
-  padding-inline-start: 16px;
-  margin: 18px 0;
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-  max-width: 64ch;
-}
-.dossier-clarification::before {
-  content: '> ';
-  color: var(--text-faint);
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-
-.dossier-subsection { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
-
 /* Rejected-vs-chosen comparison — a compact definition grid divided by a
    single rule, not two colored boxes. The chosen path is already named
    explicitly in its label, so typographic weight (not an accent border)
@@ -1154,100 +1074,6 @@ html[dir="rtl"] .h-captcha { transform-origin: right top; }
 .compare-box--rejected { color: var(--text-faint); }
 .compare-box--chosen { color: var(--text); }
 .compare-box--chosen p { color: var(--text); font-weight: 500; }
-
-/* Status matrix — the page's one literal table. Kept as a real semantic
-   <table> since its three columns are genuinely compared row by row; a
-   controlled horizontal-scroll region (rather than a stacked mobile
-   fallback) preserves that comparison on narrow screens. Borders stay
-   neutral gray throughout — status is read through the solid/dashed
-   border of the pill, not through the accent color. */
-.status-matrix-wrap {
-  overflow-x: auto;
-  margin-bottom: 26px;
-  -webkit-overflow-scrolling: touch;
-  background:
-    linear-gradient(to right, var(--ink) 0%, transparent 24px),
-    linear-gradient(to left, var(--ink) 0%, transparent 24px) 100% 0;
-  background-repeat: no-repeat;
-  background-size: 24px 100%;
-  background-attachment: local, local;
-}
-html[dir="rtl"] .status-matrix-wrap {
-  background:
-    linear-gradient(to left, var(--ink) 0%, transparent 24px),
-    linear-gradient(to right, var(--ink) 0%, transparent 24px) 100% 0;
-  background-repeat: no-repeat;
-  background-size: 24px 100%;
-  background-attachment: local, local;
-}
-.status-matrix-wrap:focus-visible { outline: 2px solid var(--accent-focus); outline-offset: 2px; }
-.status-matrix { width: 100%; min-width: 540px; border-collapse: collapse; font-size: 0.87rem; }
-.status-matrix thead th {
-  text-align: start;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border-strong);
-  white-space: nowrap;
-}
-.status-matrix td,
-.status-matrix tbody th {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-  text-align: start;
-  font-weight: 400;
-}
-.status-matrix tbody th { color: var(--text); font-weight: 600; white-space: nowrap; }
-.status-matrix td { color: var(--text-muted); }
-.status-matrix tr:last-child td,
-.status-matrix tr:last-child th { border-bottom: none; }
-
-/* Status family — one calm component, differentiated only through text
-   tone, weight, background, and border contrast. No dashed/dotted borders
-   and no color-coding: the label text itself carries the meaning. */
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.35;
-  padding: 5px 9px;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-muted);
-  white-space: normal;
-  max-width: 172px;
-}
-.status-pill.is-implemented {
-  font-weight: 700;
-  color: var(--text);
-  border-color: var(--border-strong);
-  background: var(--bg-elevated);
-}
-.status-pill.is-mock,
-.status-pill.is-validation {
-  border-color: var(--border-strong);
-}
-.status-pill.is-not-connected { color: var(--text-faint); }
-/* is-out-of-scope intentionally receives no override: the calmest, most
-   neutral pill in the set — neither elevated like "implemented" nor
-   diminished like "not connected," since it isn't a gap, it's a boundary. */
-
-.dossier-findings-list { margin-top: 22px; }
-.dossier-findings-list h3 { font-size: 0.92rem; }
-.dossier-findings-list ul { padding-inline-start: 1.3em; color: var(--text-muted); }
-.dossier-findings-list li { margin-bottom: 7px; font-size: 0.9rem; line-height: 1.7; }
-
-/* Conclusion */
-.dossier-conclusion { padding-bottom: 10px; }
-.dossier-conclusion h2 { font-size: 1.26rem; }
 
 .dossier-back { max-width: 680px; margin: 0 auto; padding: 20px 0 40px; }
 /* direction: ltr keeps the arrow the first flex item — physically on the

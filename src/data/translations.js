@@ -26,8 +26,8 @@ export const i18n = {
     production_cta: 'استعراض الحل التشغيلي',
 
     research_tag: 'بحث هندسي تطبيقي',
-    technical_title: 'كيف نمنع الأنظمة المساعدة من بناء قرارات على معلومات غير مؤكدة؟',
-    technical_body: 'بحث تطبيقي يختبر آلية تفصل بين المعلومة التي يقترحها النظام وما تم تأكيده فعليًا، قبل الانتقال إلى التوجيه أو القرار.',
+    technical_title: 'من الخبرة إلى أصل مهني واضح',
+    technical_body: 'مبادرة بحث وتطوير تستكشف كيف يمكن فهم الخبرة المهنية، واكتشاف قيمتها غير الظاهرة، وصياغتها بوضوح أقوى دون تجاوز حقيقتها.',
     technical_cta: 'استعراض البحث الهندسي',
 
     contact_email: 'البريد الإلكتروني',
@@ -71,8 +71,8 @@ export const i18n = {
     production_cta: 'Explore the Operational Solution',
 
     research_tag: 'Applied Engineering Research',
-    technical_title: 'How can assistance systems avoid basing decisions on unverified information?',
-    technical_body: 'An applied study of how to separate system-generated candidate information from confirmed facts before guidance or decisions are produced.',
+    technical_title: 'From Experience to a Professional Asset',
+    technical_body: 'A research-and-development initiative exploring how genuine experience can be understood, its hidden value uncovered, and its professional expression strengthened without exceeding what the user can support.',
     technical_cta: 'Explore the Research',
 
     contact_email: 'Email',
