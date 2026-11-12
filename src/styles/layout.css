@@ -1,0 +1,100 @@
+/* ---------- Top bar ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: var(--topbar-h);
+  /* Aligns with the centered content column; the nav's first link lines up
+     its text, not its padding, with the content edge. */
+  --edge: max(var(--gutter), (100% - var(--content)) / 2);
+  padding-inline: calc(var(--edge) - 0.55rem) var(--edge);
+  isolation: isolate;
+}
+
+/* The blur lives on a pseudo-element: backdrop-filter on the bar itself
+   would make it the containing block for any fixed-position descendant. */
+.topbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(12px) saturate(1.2);
+}
+
+.nav {
+  margin-inline-end: auto;
+}
+
+.nav ul {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.nav a {
+  display: grid;
+  place-items: center;
+  min-height: 2.75rem;
+  padding-inline: 0.55rem;
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.nav a:hover,
+.nav a[aria-current='true'] {
+  color: var(--ink);
+}
+
+.nav a[aria-current='true'] {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45em;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+/* ---------- Page frame ---------- */
+
+main > * {
+  width: min(100% - 2 * var(--gutter), var(--content));
+  margin-inline: auto;
+}
+
+.footer {
+  display: grid;
+  gap: 0.35rem;
+  width: min(100% - 2 * var(--gutter), var(--content));
+  margin-inline: auto;
+  padding-block: 2rem 2.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+}
+
+@media (min-width: 48rem) {
+  .footer {
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+  }
+
+  .footer p:last-child {
+    justify-self: end;
+    text-align: end;
+  }
+}

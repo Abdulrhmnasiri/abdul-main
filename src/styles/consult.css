@@ -1,0 +1,326 @@
+/* The advisor phone: a warm chat surface with an accent rail, so it reads as
+   a different product from the slate User Guide app next to it. */
+
+.c-screen {
+  grid-template-rows: auto minmax(0, 1fr);
+  background: #fbfaf7;
+}
+
+.c-head {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.9rem 0.75rem 0.55rem;
+  border-bottom: 1px solid #ebe8e0;
+  background: #fff;
+}
+
+.c-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.c-rail {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.3rem;
+}
+
+.c-rail li {
+  display: grid;
+  padding-top: 0.3rem;
+  border-top: 2px solid #e1ddd2;
+  color: #6b7480;
+  font-size: 0.6rem;
+  transition:
+    border-color 300ms ease,
+    color 300ms ease;
+}
+
+.c-rail .is-done {
+  border-color: #17191d;
+  color: #1c2430;
+}
+
+.c-rail .is-on {
+  border-color: var(--accent);
+  color: #1c2430;
+  font-weight: 600;
+}
+
+.c-rail .is-rejected {
+  border-color: var(--stop);
+  color: var(--stop);
+}
+
+.c-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 1.25rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+.c-next.is-open {
+  color: var(--live-ink);
+  font-weight: 600;
+}
+
+/* Padlock drawn from a box and a shackle; opens when the stage unlocks. */
+.c-lock {
+  position: relative;
+  width: 0.55rem;
+  height: 0.4rem;
+  margin-top: 0.2rem;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.c-lock::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0.3rem;
+  height: 0.28rem;
+  border: 1.5px solid currentColor;
+  border-bottom: 0;
+  border-radius: 0.2rem 0.2rem 0 0;
+  transform: translateX(-50%);
+  transition: transform 300ms var(--ease-out);
+}
+
+.c-next.is-open .c-lock::before {
+  transform: translateX(-50%) translateY(-0.12rem) rotate(-18deg);
+}
+
+/* ---------- Conversation ---------- */
+
+.c-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 0;
+  padding: 0.6rem 0.75rem;
+  /* Never clip the latest message: the script keeps the end in view. */
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.c-body:focus {
+  outline: none;
+}
+
+.c-msg {
+  max-width: 92%;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.8rem;
+  line-height: 1.6;
+}
+
+/* Start edge is the right in RTL: the candidate sits there, the advisor opposite. */
+.c-msg--me {
+  align-self: flex-start;
+  border-start-start-radius: 0.2rem;
+  background: #17191d;
+  color: #fff;
+}
+
+.c-msg--adv {
+  align-self: flex-end;
+  border-start-end-radius: 0.2rem;
+  border-inline-start: 3px solid var(--accent);
+  background: #fff;
+  box-shadow: 0 1px 0 #ebe8e0;
+}
+
+.c-card {
+  display: grid;
+  flex: none;
+  gap: 0.2rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d8d3c6;
+  border-radius: 0.7rem;
+  background: #fff;
+}
+
+.c-label {
+  color: var(--accent-ink);
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.c-wording {
+  font-weight: 500;
+}
+
+.c-field {
+  width: 100%;
+  min-height: 7.5rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.45rem;
+  background: #fffdfb;
+  color: #1c2430;
+  font: inherit;
+  resize: none;
+}
+
+@media (pointer: coarse) {
+  .c-field {
+    font-size: 16px;
+  }
+}
+
+/* While editing, the advisor's lines make way for the field. */
+[data-editing] [data-beat='1'],
+[data-editing] [data-beat='3'] {
+  display: none;
+}
+
+.c-typing {
+  align-self: flex-end;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 1px 0 #ebe8e0;
+}
+
+.c-hint {
+  margin: 0 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  background: #fff4d6;
+  color: #7a5600;
+  font-size: 0.65rem;
+}
+
+/* ---------- Actions and result ---------- */
+
+.c-actions {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 0.35rem;
+  padding: 0.55rem 0.75rem 0.85rem;
+}
+
+.c-btn {
+  min-height: 2.3rem;
+  padding: 0 0.5rem;
+  border: 1px solid #d8d3c6;
+  border-radius: 999px;
+  background: #fff;
+  color: #1c2430;
+  font-weight: 500;
+}
+
+.c-btn--primary {
+  border-color: #17191d;
+  background: #17191d;
+  color: #fff;
+}
+
+.c-btn--quiet {
+  border-color: transparent;
+  background: transparent;
+  color: #6b7480;
+}
+
+.c-result {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 0.55rem;
+  padding: 1rem 0.9rem;
+}
+
+.c-result:focus {
+  outline: none;
+}
+
+.c-result-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.c-result-title::before {
+  display: inline-grid;
+  place-items: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-inline-end: 0.4rem;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.65rem;
+  vertical-align: 0.1em;
+}
+
+[data-state='saved'] .c-result-title {
+  color: var(--live-ink);
+}
+
+[data-state='saved'] .c-result-title::before {
+  content: '✓';
+  background: var(--live);
+}
+
+[data-state='rejected'] .c-result-title {
+  color: var(--stop);
+}
+
+[data-state='rejected'] .c-result-title::before {
+  content: '×';
+  background: var(--stop);
+}
+
+.c-result-body {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.7rem;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #ebe8e0;
+}
+
+[data-state='rejected'] .c-result-body {
+  background: none;
+  box-shadow: none;
+  padding-inline: 0;
+  color: #5d6066;
+}
+
+.c-result-next {
+  color: #5d6066;
+}
+
+[data-state='saved'] .c-result-next {
+  color: var(--live-ink);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .c-msg:not([hidden]),
+  .c-card:not([hidden]),
+  .c-typing:not([hidden]),
+  .c-actions:not([hidden]),
+  .c-result:not([hidden]) {
+    animation: msg-in 380ms var(--ease-out) both;
+  }
+
+  .c-hint:not([hidden]) {
+    animation: nudge 360ms ease;
+  }
+}
+
+@keyframes nudge {
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}

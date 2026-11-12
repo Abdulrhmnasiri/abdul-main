@@ -1,0 +1,30 @@
+{
+  "name": "abdulrahman-asiri-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Bilingual (Arabic/English) engineering portfolio of Abdulrahman Asiri.",
+  "homepage": "https://abdulrhmnasiri.github.io/abdul-main/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdulrhmnasiri/abdul-main.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:dist": "node scripts/check-dist.mjs",
+    "check": "npm run typecheck && npm run test && npm run build && npm run check:dist"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  }
+}

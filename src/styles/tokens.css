@@ -1,0 +1,45 @@
+:root {
+  color-scheme: light;
+
+  --paper: #ffffff;
+  --surface: #f6f6f3;
+  --ink: #0e0f11;
+  --ink-muted: #5d6066;
+  --line: #e9e8e4;
+  --line-strong: #d3d2cd;
+  /* The accent marks focus and highlights only; body text never uses it. */
+  --accent: #e8470f;
+  --accent-ink: #b8360a;
+  --accent-soft: #fdeee7;
+  --on-ink: #ffffff;
+  --live: #14a05b;
+  /* The same green, darkened to pass contrast when it colors text. */
+  --live-ink: #0b7a42;
+  --building: #e0a100;
+  --stop: #d93025;
+  --backdrop: rgb(14 15 17 / 0.4);
+
+  --font-sans: 'Readex Pro', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  /* Plex Mono has no Arabic glyphs, so Arabic labels use the sans. */
+  --font-label: var(--font-mono);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+
+  --radius-s: 0.5rem;
+  --radius-m: 0.875rem;
+  --radius-l: 1.25rem;
+
+  --gutter: clamp(1.15rem, 4.5vw, 2.5rem);
+  --content: 66rem;
+  --topbar-h: 3.5rem;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root:lang(ar) {
+  --font-label: var(--font-sans);
+}

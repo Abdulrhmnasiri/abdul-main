@@ -1,0 +1,275 @@
+/* The advisor gets its own band: a full-bleed tint that sets it apart from the
+   client work above without a different visual language. */
+.advisor {
+  display: grid;
+  gap: 2rem;
+  padding-block: clamp(3.5rem, 10vw, 6.5rem);
+  background: var(--surface);
+  box-shadow: 0 0 0 100vmax var(--surface);
+  clip-path: inset(0 -100vmax);
+}
+
+.advisor-head {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 40rem;
+}
+
+.advisor-title {
+  font-size: clamp(1.9rem, 7.5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+:lang(en) .advisor-title {
+  letter-spacing: -0.035em;
+}
+
+/* ---------- Fact gate ---------- */
+
+.gate {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.1rem, 4vw, 1.75rem);
+  border-radius: var(--radius-l);
+  background: var(--paper);
+}
+
+.gate-inputs {
+  display: grid;
+  gap: 0.4rem;
+}
+
+@media (min-width: 48rem) {
+  .gate-inputs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gate-inputs button {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--paper);
+  text-align: start;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.gate-inputs button[aria-pressed='true'] {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.gate-statement {
+  font-weight: 500;
+}
+
+.gate-origin {
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+}
+
+/* The rail: four nodes joined by a line that fills as the statement moves. */
+.gate-rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding-top: 0.5rem;
+}
+
+.gate-rail li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+  padding-top: 1.9rem;
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+  text-align: center;
+  line-height: 1.3;
+  transition: color 250ms ease;
+}
+
+/* Connector to the previous node */
+.gate-rail li + li::after {
+  content: '';
+  position: absolute;
+  top: 0.7rem;
+  inset-inline-end: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+
+.gate-rail li::before {
+  content: '';
+  position: absolute;
+  top: 0.15rem;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--paper);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1;
+  transform: translateX(-50%);
+  z-index: 1;
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease,
+    transform 250ms var(--ease-out);
+}
+
+.gate-rail li[data-state='pass']::before {
+  content: '✓';
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.gate-rail li[data-state='pass'] + li::after,
+.gate-rail li[data-state='block']::after {
+  background: var(--ink);
+}
+
+.gate-rail li[data-state='pass'],
+.gate-rail li[data-state='block'] {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.gate-rail li[data-state='block']::before {
+  content: '×';
+  border-color: var(--stop);
+  background: var(--stop);
+  transform: translateX(-50%) scale(1.15);
+}
+
+.gate-rail li[data-state='block'] {
+  color: var(--stop);
+}
+
+.gate-rail li[data-state='skip'] {
+  opacity: 0.45;
+}
+
+.gate-rail li[data-state='skip']::before {
+  border-style: dashed;
+}
+
+/* The last node is the goal: it turns green only when reached. */
+.gate-rail li[data-node='stored'][data-state='pass']::before {
+  border-color: var(--live);
+  background: var(--live);
+}
+
+.gate-outcome {
+  display: grid;
+  min-height: 1.6em;
+  font-weight: 500;
+}
+
+.js .gate-outcome span {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.js .gate-outcome span.is-on {
+  opacity: 1;
+}
+
+html:not(.js) .gate-outcome span:not(.is-on) {
+  display: none;
+}
+
+.gate-outcome [data-stop='stored'] {
+  color: var(--live-ink);
+}
+
+.gate-outcome :is([data-stop='source'], [data-stop='claim']) {
+  color: var(--stop);
+}
+
+/* ---------- Stage: phone and gate ---------- */
+
+.advisor-stage {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.advisor-stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 60rem) {
+  .advisor-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+  }
+}
+
+/* ---------- Status row ---------- */
+
+.progress {
+  margin-bottom: 0.6rem;
+}
+
+.progress li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  column-gap: 0.5rem;
+  padding-block: 0.6rem;
+  border-top: 1px solid var(--line-strong);
+  font-size: var(--text-sm);
+}
+
+.progress li::before {
+  content: '✓';
+  grid-row: span 2;
+  color: var(--live-ink);
+  font-weight: 600;
+}
+
+.progress li[data-state='building']::before {
+  content: '◐';
+  color: var(--building);
+}
+
+.progress-label {
+  font-weight: 500;
+}
+
+.progress-note {
+  grid-column: 2;
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+}
+
+.progress-flag {
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: #fff4d6;
+  color: #7a5600;
+  font-size: var(--text-xs);
+  font-weight: 400;
+}
+
+/* Chips and rows sit on the tinted band here. */
+.advisor .chips li {
+  background: var(--paper);
+}
+
+.demo-link {
+  margin-top: 1rem;
+}
+

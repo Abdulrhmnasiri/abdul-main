@@ -1,0 +1,82 @@
+/* ---------- Collapsed disclosure rows ----------
+   Technical decisions, technologies and skills stay closed until asked for,
+   so each project is seen first and its engineering detail second. */
+
+.rows {
+  border-top: 1px solid var(--line-strong);
+}
+
+.row {
+  border-bottom: 1px solid var(--line);
+}
+
+.row summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+}
+
+.row summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A plus that becomes a minus: the vertical bar shrinks away when open. */
+.row summary::after {
+  content: '';
+  flex: none;
+  width: 0.8rem;
+  height: 0.8rem;
+  background:
+    linear-gradient(var(--ink-muted), var(--ink-muted)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--ink-muted), var(--ink-muted)) center / 1.5px 100% no-repeat;
+  transition: background-size 250ms var(--ease-out);
+}
+
+.row[open]:not(.is-closing) summary::after {
+  background-size:
+    100% 1.5px,
+    1.5px 0;
+}
+
+.row-body {
+  display: grid;
+  gap: 0.75rem;
+  padding-bottom: 1.1rem;
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.decision-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.decision-list li {
+  display: grid;
+  gap: 0.15rem;
+  max-width: 62ch;
+}
+
+.decision-list strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.chips li {
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-xs);
+}

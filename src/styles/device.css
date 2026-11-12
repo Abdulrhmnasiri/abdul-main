@@ -1,0 +1,586 @@
+/* ---------- Showcase: device + captions ---------- */
+
+.showcase {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: 3rem 0.75rem 1.25rem;
+  border-radius: var(--radius-l);
+  background: var(--surface);
+}
+
+/* Evidence label: these are illustrations, not screenshots. */
+.showcase-badge {
+  position: absolute;
+  top: 0.85rem;
+  inset-inline-start: 0.85rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+}
+
+.captions {
+  display: grid;
+  max-width: 34ch;
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+/* With the script, captions share one cell so switching never shifts the
+   layout. Without it they simply stack. */
+.js .caption {
+  grid-area: 1 / 1;
+}
+
+.js .caption:not(.is-on) {
+  visibility: hidden;
+}
+
+.showcase .fineprint {
+  max-width: 34ch;
+  text-align: center;
+}
+
+/* ---------- The device ----------
+   Proportions follow a modern phone. Sized in rem so the placeholder UI
+   inside scales with it. */
+
+.device {
+  --w: 15.5rem;
+  width: var(--w);
+  aspect-ratio: 9 / 19;
+  padding: 0.55rem;
+  border-radius: 2.6rem;
+  background: #111214;
+  box-shadow:
+    0 0 0 1px #2a2c30,
+    0 40px 70px -35px rgb(0 0 0 / 0.45);
+}
+
+.device--tall {
+  aspect-ratio: 9 / 21.5;
+}
+
+.device-screen {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2.1rem;
+  background: #fff;
+  color: #1c2430;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+/* Status-bar notch */
+.device-screen::before {
+  content: '';
+  position: absolute;
+  top: 0.45rem;
+  left: 50%;
+  width: 4.2rem;
+  height: 1.05rem;
+  border-radius: 999px;
+  background: #111214;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+@media (min-width: 60rem) {
+  .device {
+    --w: 17rem;
+  }
+
+  .device-screen {
+    font-size: 0.75rem;
+  }
+}
+
+/* Controls inside the phone sit on small surfaces, so the focus ring is
+   drawn inward instead of being clipped by the rounded screen. */
+.device-screen :focus-visible {
+  outline-offset: -2px;
+}
+
+.device-screen button {
+  font: inherit;
+}
+
+/* Without the script none of the phone's controls can work. */
+html:not(.js) [data-needs-js] {
+  display: none;
+}
+
+/* ---------- User Guide screens ---------- */
+
+.g-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.9rem 0.85rem 0.6rem;
+  background: #22303c;
+  color: #fff;
+  font-weight: 500;
+}
+
+.g-menu {
+  width: 0.8rem;
+  height: 0.55rem;
+  border-block: 1.5px solid currentColor;
+  background: linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat;
+}
+
+.g-viewport {
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.g-track {
+  display: flex;
+  height: 100%;
+  transform: translateX(calc(var(--at, 0) * 100%));
+  transition: transform 520ms var(--ease-out);
+}
+
+.g-screen {
+  flex: 0 0 100%;
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.g-screen:focus {
+  outline: none;
+}
+
+.g-h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.g-crumb {
+  color: #6b7480;
+}
+
+/* Procedure */
+
+.g-chip {
+  justify-self: start;
+  padding: 0.15rem 0.65rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fff4d6;
+  color: #7a5600;
+}
+
+.g-chip::after {
+  content: '‹';
+  margin-inline-start: 0.3rem;
+}
+
+.g-steps {
+  display: grid;
+  gap: 0.4rem;
+  counter-reset: s;
+}
+
+.g-steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: 0.5rem;
+  counter-increment: s;
+  transition: background-color 300ms ease;
+}
+
+.g-steps li::before {
+  content: counter(s);
+  display: grid;
+  place-items: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: #22303c;
+  color: #fff;
+  font-size: 0.6rem;
+}
+
+.g-steps li.is-focus {
+  background: #fdeee7;
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.g-steps li.is-focus::before {
+  background: var(--accent-ink);
+}
+
+.g-video {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  aspect-ratio: 16 / 8;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  background: linear-gradient(135deg, #1c2430, #34495c);
+  color: #c9d2db;
+}
+
+.g-time {
+  padding: 0 0.35rem;
+  border-radius: 0.25rem;
+  background: rgb(0 0 0 / 0.45);
+  font-size: 0.6rem;
+}
+
+/* Assistant */
+
+.g-screen--assistant {
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-content: stretch;
+}
+
+.g-chat {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  overflow: hidden;
+}
+
+.g-exchange {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.g-msg {
+  max-width: 88%;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.75rem;
+}
+
+.g-msg--bot {
+  justify-self: start;
+  background: #f1f3f5;
+}
+
+.g-msg--user {
+  justify-self: end;
+  background: #22303c;
+  color: #fff;
+}
+
+.g-msg--user mark {
+  border-radius: 0.2rem;
+  background: var(--accent-ink);
+  color: #fff;
+}
+
+.g-route {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.g-kw {
+  padding: 0 0.35rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.3rem;
+  color: var(--accent-ink);
+}
+
+.g-dest {
+  min-height: 1.75rem;
+  padding: 0 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  background: #22303c;
+  color: #fff;
+  font-weight: 500;
+}
+
+.g-dest::after {
+  content: '‹';
+  margin-inline-start: 0.35rem;
+}
+
+.g-typing {
+  justify-self: start;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.75rem;
+  background: #f1f3f5;
+}
+
+.g-typing i,
+.c-typing i {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: #8a94a1;
+}
+
+.g-asks {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.g-asks button {
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #dfe3e8;
+  border-radius: 999px;
+  background: #fff;
+  color: #1c2430;
+  text-align: start;
+}
+
+.g-asks button.is-used {
+  border-color: #22303c;
+  background: #f1f3f5;
+}
+
+/* Support request */
+
+.g-ext {
+  padding: 0 0.45rem;
+  border: 1px dashed #8a94a1;
+  border-radius: 999px;
+  color: #5d6066;
+  font-size: 0.6rem;
+  font-weight: 400;
+}
+
+.g-stepper {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.g-stepper li {
+  flex: 1;
+  padding-top: 0.3rem;
+  border-top: 2px solid #dfe3e8;
+  color: #6b7480;
+  font-size: 0.6rem;
+}
+
+.g-stepper .is-done {
+  border-color: #22303c;
+}
+
+.g-stepper .is-on {
+  border-color: var(--accent);
+  color: #1c2430;
+  font-weight: 500;
+}
+
+.g-form,
+.g-preview {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.g-types {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.g-types button {
+  min-height: 2rem;
+  padding: 0.3rem;
+  border: 1px solid #dfe3e8;
+  border-radius: 0.6rem;
+  background: #fff;
+  color: #1c2430;
+}
+
+.g-types button[aria-pressed='true'] {
+  border-color: #22303c;
+  box-shadow: inset 0 0 0 1px #22303c;
+  font-weight: 500;
+}
+
+.g-label {
+  display: grid;
+  gap: 0.2rem;
+  color: #5d6066;
+}
+
+.g-label input,
+.g-label textarea {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #dfe3e8;
+  border-radius: 0.45rem;
+  background: #fff;
+  color: #1c2430;
+  font: inherit;
+  resize: none;
+}
+
+.g-label input[aria-invalid='true'] {
+  border-color: var(--stop);
+}
+
+/* iOS zooms into inputs below 16px, which would throw the page off. */
+@media (pointer: coarse) {
+  .g-label input,
+  .g-label textarea {
+    font-size: 16px;
+  }
+}
+
+.g-error {
+  color: var(--stop);
+}
+
+.g-btn {
+  justify-self: start;
+  min-height: 2rem;
+  padding: 0.3rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: #22303c;
+  color: #fff;
+}
+
+.g-btn--ghost {
+  border: 1px solid #22303c;
+  background: transparent;
+  color: #22303c;
+}
+
+.g-preview dl {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.g-preview dl > div {
+  display: grid;
+  gap: 0.05rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.55rem;
+  background: #f1f3f5;
+}
+
+.g-preview dt {
+  color: #5d6066;
+  font-size: 0.6rem;
+}
+
+.g-preview dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Permissions */
+
+.g-back {
+  justify-self: start;
+  min-height: 1.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #5d6066;
+}
+
+.g-back::before {
+  content: '›';
+  margin-inline-end: 0.3rem;
+}
+
+.g-roles {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.g-roles li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.6rem;
+  background: #f1f3f5;
+}
+
+.g-roles .is-focus {
+  background: #fdeee7;
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.g-roles span {
+  color: #5d6066;
+}
+
+/* Bottom bar */
+
+.g-tabbar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #e6e9ed;
+  background: #fff;
+}
+
+.g-tabbar button {
+  min-height: 2.6rem;
+  padding: 0;
+  border: 0;
+  border-top: 2px solid transparent;
+  background: none;
+  color: #6b7480;
+}
+
+.g-tabbar button[aria-current='true'] {
+  border-top-color: var(--accent);
+  color: #1c2430;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .g-msg:not([hidden]),
+  .g-typing:not([hidden]) {
+    animation: msg-in 320ms var(--ease-out) both;
+  }
+
+  .g-typing:not([hidden]) i,
+  .c-typing:not([hidden]) i {
+    animation: dot 1s ease-in-out infinite;
+  }
+
+  .g-typing i:nth-child(2),
+  .c-typing i:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  .g-typing i:nth-child(3),
+  .c-typing i:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+}
+
+@keyframes dot {
+  50% {
+    opacity: 0.35;
+    transform: translateY(-2px);
+  }
+}

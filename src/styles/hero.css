@@ -1,0 +1,218 @@
+.hero {
+  display: grid;
+  gap: 1.25rem;
+  padding-block: clamp(2rem, 7vw, 5rem) clamp(2.5rem, 7vw, 4.5rem);
+}
+
+@media (min-width: 60rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-areas:
+      'id status'
+      'name status'
+      'line status';
+    column-gap: 4rem;
+    align-items: end;
+  }
+
+  .hero-id {
+    grid-area: id;
+  }
+
+  .hero h1 {
+    grid-area: name;
+  }
+
+  .hero-line {
+    grid-area: line;
+  }
+
+  .status {
+    grid-area: status;
+    align-self: center;
+  }
+}
+
+.hero-id {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* The photo is a pre-cropped, centered square; the ring defines the circle
+   against the white page, since the photo's own background is white too. */
+.portrait {
+  width: 4.25rem;
+  height: 4.25rem;
+  flex: none;
+  border-radius: 50%;
+  background: #fbfbfb;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px var(--line-strong),
+    0 6px 16px -8px rgb(14 15 17 / 0.35);
+}
+
+/* Primary and secondary titles are positioning, not job history. */
+.hero-role {
+  display: grid;
+  line-height: 1.4;
+}
+
+.hero-role-main {
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.hero-role-alt,
+.hero-meta {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
+.hero-meta {
+  font-size: var(--text-xs);
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 11.5vw, 5.25rem);
+  font-weight: 500;
+  line-height: 0.98;
+}
+
+:lang(en) .hero h1 {
+  letter-spacing: -0.045em;
+}
+
+:lang(ar) .hero h1 {
+  line-height: 1.2;
+}
+
+.hero-line {
+  max-width: 34ch;
+  color: var(--ink-muted);
+  font-size: clamp(1.05rem, 3.6vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ---------- Project index ---------- */
+
+.status {
+  margin-top: 0.75rem;
+  padding: 0.35rem 1rem 0.5rem;
+  border-radius: var(--radius-l);
+  background: var(--surface);
+}
+
+.status-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 0.6rem 0.4rem;
+  color: var(--ink-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+}
+
+:lang(en) .status-head {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-pulse {
+  position: relative;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--live);
+}
+
+.status ul > li > a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  padding-block: 0.55rem;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.status a::after {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-inline-start: 0.25rem;
+  border-top: 1.5px solid var(--ink-muted);
+  border-right: 1.5px solid var(--ink-muted);
+  transform: rotate(135deg) translate(-2px, 2px);
+  transition: transform 200ms var(--ease-out);
+}
+
+.status a:hover::after {
+  border-color: var(--accent);
+  transform: rotate(135deg) translate(0, 0);
+}
+
+.status-text {
+  display: grid;
+  line-height: 1.35;
+}
+
+.status-label {
+  font-weight: 500;
+}
+
+.status-value {
+  color: var(--ink-muted);
+  font-size: var(--text-xs);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Rows report in one after another, like health checks completing. */
+  .js .status li {
+    animation: row-in 500ms var(--ease-out) both;
+    animation-delay: calc(250ms + var(--i) * 140ms);
+  }
+
+  .js .status .status-dot {
+    animation: check 700ms ease both;
+    animation-delay: calc(450ms + var(--i) * 140ms);
+  }
+
+  .status-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--live);
+    animation: pulse 2.4s ease-out infinite;
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes check {
+  from {
+    background: var(--line-strong);
+    transform: scale(0.6);
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
