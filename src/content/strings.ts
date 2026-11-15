@@ -17,7 +17,7 @@ const ar = {
   },
   guide: {
     title: 'دليل المستخدم',
-    lede: 'دليل مستخدم لنظام تشغيلي داخلي بعدة وحدات. بنيته على MkDocs ليجد الموظف الخطوات والصلاحيات وفيديو الشرح في مكان واحد.',
+    lede: 'طوّرت دليل مستخدم بـ MkDocs لنظام تشغيلي قيد الاستخدام الفعلي، يجمع خطوات العمل والصلاحيات والشروحات المرئية ليصل المستخدم إلى المعلومة بسهولة.',
     screensLabel: 'شاشات الدليل',
   },
   evidence: {
@@ -28,7 +28,7 @@ const ar = {
   },
   advisor: {
     title: 'مستشار مهني',
-    lede: 'إرشاد مهني يُبقي السيرة الذاتية ضمن ما أكده صاحبها.',
+    lede: 'مشروع بحث وتطوير لمستشار مهني، يراجع خبرات المرشح ويستبعد الادعاءات غير المسنودة، ولا يوصي إلا بما أكده صاحبه.',
     gateTitle: 'متى تُحفظ العبارة كحقيقة؟',
     gateHint: 'اختر عبارة',
     gateNote: 'مدخلات توضيحية. الفحوص منفّذة ومختبرة، وتعتمد على قواعد لا على الذكاء الاصطناعي.',
@@ -81,7 +81,7 @@ const en: UiStrings = {
   },
   guide: {
     title: 'User Guide',
-    lede: 'The user guide for an internal operations system with several modules. Built on MkDocs, so staff find the steps, permissions and walkthrough video in one place.',
+    lede: 'I developed a user guide in MkDocs for an operational system in live use. It brings procedures, permissions and video walkthroughs together so users find what they need quickly.',
     screensLabel: 'Guide screens',
   },
   evidence: {
@@ -92,7 +92,7 @@ const en: UiStrings = {
   },
   advisor: {
     title: 'Career Advisor',
-    lede: 'Career guidance that keeps a CV within what its owner has confirmed.',
+    lede: 'A research and development project: a career advisor that reviews a candidate’s experience, flags unsupported claims, and recommends only what the candidate has confirmed.',
     gateTitle: 'When does a statement become a fact?',
     gateHint: 'Choose a statement',
     gateNote: 'Example inputs. The checks are implemented and tested, and they are rule-based, not AI.',

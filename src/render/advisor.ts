@@ -126,7 +126,7 @@ export function renderAdvisor(ctx: RenderContext): SafeHtml {
   return html`
     <section class="advisor" id="advisor" data-nav="guide" aria-labelledby="advisor-title">
       <header class="advisor-head">
-        <p class="work-tag"><span class="status-dot" data-state="${status.state}" aria-hidden="true"></span>${status.value[locale]}</p>
+        <p class="work-tag"><span class="status-dot" data-state="${status.state}" aria-hidden="true"></span><span lang="en" dir="ltr">${status.value.en}</span></p>
         <h2 id="advisor-title" class="advisor-title">${c.title}</h2>
         <p class="work-lede">${c.lede}</p>
       </header>

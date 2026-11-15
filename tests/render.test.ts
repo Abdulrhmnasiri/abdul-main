@@ -37,7 +37,7 @@ describe.each(LOCALES)('rendered %s page', (locale) => {
     expect(body).not.toContain('<figcaption');
     expect(body).not.toMatch(/data-caption=/);
     expect(body).not.toMatch(/مثال تفاعلي|نموذج تفاعلي|Interactive (example|illustration)/);
-    expect(body).not.toMatch(/يعتمده|بحث وتطوير|R&amp;D/);
+    expect(body).not.toMatch(/يعتمده|R&amp;D|هندسة البرمجيات|Software engineering/);
   });
 
   it('keeps the user-guide phone in the page language', () => {
@@ -46,6 +46,39 @@ describe.each(LOCALES)('rendered %s page', (locale) => {
     const dir = locale === 'ar' ? 'rtl' : 'ltr';
     expect(phone).toContain(`class="device-screen" dir="${dir}" lang="${locale}"`);
     const text = phone.replace(/<[^>]+>/g, ' ');
+    expect(locale === 'ar' ? /[A-Za-z]{3,}/.test(text) : /\p{Script=Arabic}/u.test(text)).toBe(false);
+  });
+
+  it('labels the Career Advisor with the single status "Development"', () => {
+    const tag = body.match(/class="work-tag"><span class="status-dot" data-state="building"[^>]*><\/span><span lang="en" dir="ltr">([^<]+)</);
+    expect(tag?.[1]).toBe('Development');
+  });
+
+  it('plays the walkthrough inside the procedure page video card, below the steps', () => {
+    const steps = body.indexOf('class="g-steps"');
+    const card = body.indexOf('class="g-video"');
+    const walk = body.indexOf('data-walk');
+    const cardEnd = body.indexOf('data-screen="assistant"');
+    expect(steps).toBeGreaterThan(-1);
+    expect(card).toBeGreaterThan(steps);
+    expect(walk).toBeGreaterThan(card);
+    expect(walk).toBeLessThan(cardEnd);
+  });
+
+  it('has no "Extension" label in the support screen', () => {
+    expect(body).not.toMatch(/امتداد|g-ext|>Extension</);
+  });
+
+  it('renders a walkthrough in the page language with working controls', () => {
+    const start = body.indexOf('<div class="w" data-walk');
+    expect(start).toBeGreaterThan(-1);
+    const walk = body.slice(start, body.indexOf('<div class="w-ctl">', start));
+    const dir = locale === 'ar' ? 'rtl' : 'ltr';
+    expect(walk).toContain(`dir="${dir}" lang="${locale}"`);
+    expect(body).toMatch(/data-w-toggle[^>]*data-label-play="[^"]+" data-label-pause="[^"]+"/);
+    for (const hook of ['data-w-close', 'data-w-replay', 'data-w-prog', 'data-w-ptr', 'data-w="menu"', 'data-w="module"', 'data-w="new"', 'data-w="submit"'])
+      expect(body).toContain(hook);
+    const text = walk.replace(/<[^>]+>/g, ' ');
     expect(locale === 'ar' ? /[A-Za-z]{3,}/.test(text) : /\p{Script=Arabic}/u.test(text)).toBe(false);
   });
 

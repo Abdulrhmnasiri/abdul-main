@@ -35,7 +35,6 @@ const PHONE = {
       ['المدير', 'يراجع التقارير'],
     ],
     support: 'طلب دعم تقني',
-    extension: 'امتداد',
     stepper: ['التحقق', 'التفاصيل', 'المعاينة', 'طلباتي'],
     kinds: ['طلب خدمة', 'بلاغ عن مشكلة'],
     kindsLabel: 'نوع الطلب',
@@ -65,7 +64,6 @@ const PHONE = {
       ['Manager', 'Reviews reports'],
     ],
     support: 'Technical support request',
-    extension: 'Extension',
     stepper: ['Verify', 'Details', 'Preview', 'My requests'],
     kinds: ['Service request', 'Report a problem'],
     kindsLabel: 'Request type',
@@ -86,7 +84,7 @@ function screens(locale: Locale): Record<string, SafeHtml> {
     <p class="g-crumb">${p.crumb}</p>
     <p class="g-h">${p.heading}</p>
     <ol class="g-steps">${p.steps.map((s) => html`<li>${s}</li>`)}</ol>
-    <div class="g-video"><span>${p.video}</span><span class="g-time">1:20</span></div>
+    <div class="g-video" data-video-open><span class="g-play" aria-hidden="true"></span><span>${p.video}</span><span class="g-time">0:24</span>${renderWalkthrough(locale)}</div>
   `;
 
   const assistant = html`
@@ -112,7 +110,7 @@ function screens(locale: Locale): Record<string, SafeHtml> {
   `;
 
   const support = html`
-    <p class="g-h">${p.support} <span class="g-ext">${p.extension}</span></p>
+    <p class="g-h">${p.support}</p>
     <ol class="g-stepper" data-stepper>
       <li class="is-done">${p.stepper[0]}</li><li class="is-on" data-step="details">${p.stepper[1]}</li><li data-step="preview">${p.stepper[2]}</li><li>${p.stepper[3]}</li>
     </ol>
@@ -142,6 +140,83 @@ function screens(locale: Locale): Record<string, SafeHtml> {
   `;
 
   return { procedure, assistant, support, permissions };
+}
+
+const WALK = {
+  ar: {
+    modules: ['لوحة المعلومات', 'الطلبات', 'التقارير', 'الإعدادات'],
+    list: 'الطلبات',
+    add: 'طلب جديد',
+    subject: 'تحديث بيانات',
+    details: 'تحديث رقم التواصل',
+    submit: 'إرسال للاعتماد',
+    sent: 'أُرسل الطلب للاعتماد',
+    play: 'تشغيل',
+    pause: 'إيقاف مؤقت',
+    replay: 'إعادة التشغيل',
+    close: 'إغلاق',
+  },
+  en: {
+    modules: ['Dashboard', 'Requests', 'Reports', 'Settings'],
+    list: 'Requests',
+    add: 'New request',
+    subject: 'Update my details',
+    details: 'Update my contact number',
+    submit: 'Submit for approval',
+    sent: 'Sent for approval',
+    play: 'Play',
+    pause: 'Pause',
+    replay: 'Replay',
+    close: 'Close',
+  },
+} as const;
+
+/** Index of the "Requests" module in the drawer; the pointer opens this one. */
+const REQUESTS_MODULE = 1;
+
+/**
+ * The walkthrough plays inside the procedure page's own video card, so the
+ * numbered steps above it stay visible and are ticked off as it runs. It is a
+ * scripted placeholder interface, not a recording of the production system:
+ * generic module names and sample text only. src/client/walkthrough.ts drives
+ * it from one timeline.
+ */
+function renderWalkthrough(locale: Locale): SafeHtml {
+  const p = PHONE[locale];
+  const w = WALK[locale];
+  const dir = locale === 'ar' ? 'rtl' : 'ltr';
+  const skeleton = (n: number) => html`<div class="w-skel">${Array.from({ length: n }, () => html`<i></i>`)}</div>`;
+  return html`
+    <div class="w" data-walk hidden role="group" aria-label="${p.video}" dir="${dir}" lang="${locale}" data-scene="home">
+      <div class="w-stage" data-w-stage>
+        <div class="w-top"><span class="w-menu" data-w="menu" aria-hidden="true"><i></i></span><b aria-hidden="true">${p.app}</b></div>
+        <div class="w-scene w-scene--home" aria-hidden="true">${skeleton(2)}</div>
+        <div class="w-scene w-scene--list" aria-hidden="true">
+          <p class="w-h">${w.list}</p>
+          <span class="w-btn" data-w="new">${w.add}</span>
+        </div>
+        <div class="w-scene w-scene--form" aria-hidden="true">
+          <div class="w-fields">
+            <div class="w-field" data-w="subject"><small>${p.subject}</small><span class="w-typed" data-text="${w.subject}"></span></div>
+            <div class="w-field" data-w="details"><small>${p.details}</small><span class="w-typed" data-text="${w.details}"></span></div>
+          </div>
+          <span class="w-btn w-btn--primary" data-w="submit">${w.submit}</span>
+        </div>
+        <div class="w-scrim" aria-hidden="true"></div>
+        <ul class="w-drawer" aria-hidden="true">
+          ${w.modules.map((m, i) => html`<li${i === REQUESTS_MODULE ? html` data-w="module"` : null}>${m}</li>`)}
+        </ul>
+        <p class="w-toast" aria-hidden="true">${w.sent}</p>
+        <svg class="w-ptr" data-w-ptr viewBox="0 0 16 20" aria-hidden="true"><path d="M1.5 1.2v14.3l3.8-3.6 2.7 6 2.3-1-2.7-5.9h5.3z" /></svg>
+      </div>
+      <div class="w-ctl">
+        <button type="button" class="w-btn-ico" data-w-toggle data-label-play="${w.play}" data-label-pause="${w.pause}" aria-label="${w.pause}"><i aria-hidden="true"></i></button>
+        <div class="w-prog" aria-hidden="true"><i data-w-prog></i></div>
+        <button type="button" class="w-btn-ico w-btn-ico--replay" data-w-replay aria-label="${w.replay}"><i aria-hidden="true"></i></button>
+        <button type="button" class="w-btn-ico w-btn-ico--close" data-w-close aria-label="${w.close}"><i aria-hidden="true"></i></button>
+      </div>
+    </div>
+  `;
 }
 
 export function renderGuide(ctx: RenderContext): SafeHtml {
