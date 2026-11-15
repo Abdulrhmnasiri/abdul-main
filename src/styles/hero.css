@@ -59,12 +59,36 @@
   line-height: 1.4;
 }
 
-.hero-role-main {
+.hero-titles {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.55rem;
+}
+
+.hero-role-main,
+.hero-role-alt {
   font-size: var(--text-md);
   font-weight: 600;
 }
 
-.hero-role-alt,
+/* The secondary title shares the headline line, set back in tone. */
+.hero-role-alt {
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+/* Narrow screens: a touch smaller so both titles stay on one line. */
+@media (max-width: 30rem) {
+  .hero-role-main,
+  .hero-role-alt {
+    font-size: 0.9rem;
+  }
+
+  .hero-titles {
+    column-gap: 0.4rem;
+  }
+}
+
 .hero-meta {
   color: var(--ink-muted);
   font-size: var(--text-sm);
@@ -76,7 +100,7 @@
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 11.5vw, 5.25rem);
+  font-size: clamp(2.2rem, 9.5vw, 4.4rem);
   font-weight: 500;
   line-height: 0.98;
 }

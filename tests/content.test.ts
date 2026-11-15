@@ -34,10 +34,12 @@ describe('bilingual content', () => {
 
 describe('user guide', () => {
   it('routes each documented example through a keyword in its phrase', () => {
-    for (const r of guide.routes) expect(splitOnKeyword(r.phrase, r.keyword)[1]).toBe(r.keyword);
+    for (const r of guide.routes) {
+      for (const l of ['ar', 'en'] as const) expect(splitOnKeyword(r.phrase[l], r.keyword[l])[1]).toBe(r.keyword[l]);
+    }
   });
 
-  it('has a caption for every screen', () => {
+  it('has a unique id for every screen', () => {
     expect(new Set(guide.screens.map((s) => s.id)).size).toBe(guide.screens.length);
   });
 });
@@ -73,14 +75,6 @@ describe('career advisor', () => {
 
 describe('recorded consultation', () => {
   const { consult } = advisor;
-
-  it('has a caption for every stage the phone can show', () => {
-    expect(Object.keys(consult.captions)).toEqual(['understand', 'wording', 'confirm', 'saved', 'rejected']);
-    for (const caption of Object.values(consult.captions)) {
-      expect(caption.ar.trim()).not.toBe('');
-      expect(caption.en.trim()).not.toBe('');
-    }
-  });
 
   it('keeps the recorded lines in the product language, Arabic', () => {
     for (const line of [consult.candidate, consult.read, consult.wording, consult.question]) {

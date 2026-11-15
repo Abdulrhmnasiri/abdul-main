@@ -32,8 +32,25 @@ describe.each(LOCALES)('rendered %s page', (locale) => {
     for (const link of body.match(/<a\b[^>]*target="_blank"[^>]*>/g) ?? []) expect(link).toContain('noopener');
   });
 
-  it('labels the user-guide screens as illustrations', () => {
-    expect(body).toMatch(/class="showcase-badge">[^<]+</);
+  it('carries no "interactive example" labels or helper text under the phones', () => {
+    expect(body).not.toContain('showcase-badge');
+    expect(body).not.toContain('<figcaption');
+    expect(body).not.toMatch(/data-caption=/);
+    expect(body).not.toMatch(/مثال تفاعلي|نموذج تفاعلي|Interactive (example|illustration)/);
+    expect(body).not.toMatch(/يعتمده|بحث وتطوير|R&amp;D/);
+  });
+
+  it('keeps the user-guide phone in the page language', () => {
+    const start = body.indexOf('<figure class="showcase" data-showcase');
+    const phone = body.slice(start, body.indexOf('</figure>', start));
+    const dir = locale === 'ar' ? 'rtl' : 'ltr';
+    expect(phone).toContain(`class="device-screen" dir="${dir}" lang="${locale}"`);
+    const text = phone.replace(/<[^>]+>/g, ' ');
+    expect(locale === 'ar' ? /[A-Za-z]{3,}/.test(text) : /\p{Script=Arabic}/u.test(text)).toBe(false);
+  });
+
+  it('drops the location from the hero', () => {
+    expect(body).not.toMatch(/Riyadh|الرياض/);
   });
 
 
@@ -60,16 +77,16 @@ describe.each(LOCALES)('rendered %s page', (locale) => {
     const alt = body.indexOf('hero-role-alt');
     expect(main).toBeGreaterThan(-1);
     expect(alt).toBeGreaterThan(main);
-    const roles = locale === 'ar' ? ['مهندس دعم تقني', 'مهندس دعم تطبيقات'] : ['Technical Support Engineer', 'Application Support Engineer'];
+    const roles = locale === 'ar' ? ['مهندس دعم تقني', 'أخصائي دعم تطبيقات'] : ['Technical Support Engineer', 'Application Support Engineer'];
     expect(body).toContain(`hero-role-main">${roles[0]}<`);
     expect(body).toContain(`hero-role-alt">${roles[1]}<`);
   });
 
-  it('keeps the descriptive hero sentence unchanged', () => {
+  it('renders the descriptive hero sentence', () => {
     const line =
       locale === 'ar'
-        ? 'أدعم التطبيقات وأحل مشكلات التشغيل، وأطوّر الأدوات والأنظمة التي تجعلها أسهل استخدامًا وأكثر موثوقية.'
-        : 'I support applications and resolve operational issues, and I build the tools and systems that make them easier to use and more reliable.';
+        ? 'أدعم التطبيقات وأتابع مشاكل التشغيل حتى تُحل، وأبني الأدوات والأدلة التي تسهّل العمل على الفريق.'
+        : 'I keep applications running, follow operational problems through to a fix, and build the tools and guides that make the next one easier.';
     expect(body).toContain(`<p class="hero-line">${line}</p>`);
   });
 
@@ -80,19 +97,9 @@ describe.each(LOCALES)('rendered %s page', (locale) => {
     for (const index of all(body, /data-ask="(\d+)"/g)) expect(exchanges).toContain(index);
   });
 
-  it('has exactly one caption per phone screen and consultation stage', () => {
-    const captions = all(body, /data-caption="([^"]+)"/g);
-    expect(captions.length).toBe(new Set(captions).size);
-    expect(captions).toEqual(expect.arrayContaining(['procedure', 'assistant', 'support', 'permissions', 'understand', 'saved', 'rejected']));
-  });
-
-  it('marks the consultation phone as an interactive example from a recorded run', () => {
-    expect(body).toMatch(/class="showcase-badge">[^<]+</);
+  it('keeps the consultation phone in the product language, Arabic', () => {
     expect(body).toContain('data-consult');
-  });
-
-  it('keeps the recreated device right-to-left in both languages', () => {
-    expect(body).toMatch(/class="device-screen" dir="rtl" lang="ar"/);
+    expect(body).toMatch(/class="device-screen c-screen" dir="rtl" lang="ar"/);
   });
 
   it('pre-renders the first gate example so it reads without JavaScript', () => {

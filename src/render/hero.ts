@@ -4,15 +4,16 @@ import { html, type SafeHtml } from '../lib/html.ts';
 import type { RenderContext } from './context.ts';
 
 export function renderHero({ locale, t }: RenderContext): SafeHtml {
-  const dot = html`<span aria-hidden="true"> · </span>`;
   return html`
     <section class="hero" aria-labelledby="hero-name">
       <div class="hero-id">
         <img class="portrait" src="/src/assets/portrait.webp" width="160" height="160" alt="" fetchpriority="high" />
         <p class="hero-role">
-          <span class="hero-role-main">${t.hero.role}</span>
-          <span class="hero-role-alt">${t.hero.roleAlt}</span>
-          <span class="hero-meta">${t.hero.years}${dot}${t.hero.place}</span>
+          <span class="hero-titles">
+            <span class="hero-role-main">${t.hero.role}</span>
+            <span class="hero-role-alt">${t.hero.roleAlt}</span>
+          </span>
+          <span class="hero-meta">${t.hero.years}</span>
         </p>
       </div>
       <h1 id="hero-name">${profile.name[locale]}</h1>

@@ -11,7 +11,6 @@ export function initConsult(root: HTMLElement): void {
   const q = <T extends HTMLElement>(selector: string) => root.querySelector<T>(selector);
   const beats = Array.from(root.querySelectorAll<HTMLElement>('[data-beat]'));
   const stages = Array.from(root.querySelectorAll<HTMLElement>('[data-stage]'));
-  const captions = Array.from(root.querySelectorAll<HTMLElement>('[data-caption]'));
   const body = q('[data-body]');
   const typing = q('[data-typing]');
   const actions = q('[data-actions]');
@@ -44,7 +43,6 @@ export function initConsult(root: HTMLElement): void {
       li.classList.toggle('is-rejected', flag === 'rejected' && i === active);
     });
   };
-  const setCaption = (id: string) => captions.forEach((c) => c.classList.toggle('is-on', c.dataset.caption === id));
   const say = (message: string) => {
     hint.textContent = message;
     hint.hidden = !message;
@@ -85,39 +83,36 @@ export function initConsult(root: HTMLElement): void {
     nextButton.classList.remove('is-open');
     say('');
     setStage(0);
-    setCaption('understand');
   };
 
   /** Reveals each recorded beat after a short typing indicator. */
   const play = () => {
     reset();
-    const reveal = (index: number, caption: string, stage: number) => () => {
+    const reveal = (index: number, stage: number) => () => {
       typing.hidden = true;
       const beat = beats[index];
       if (beat) beat.hidden = false;
       body.scrollTop = body.scrollHeight;
       setStage(stage);
-      setCaption(caption);
     };
     const showActions = () => {
       actions.hidden = false;
       setStage(2);
-      setCaption('confirm');
     };
-    const steps: Array<[number, string, number]> = [
-      [1, 'understand', 0],
-      [2, 'wording', 1],
-      [3, 'wording', 1],
+    const steps: Array<[number, number]> = [
+      [1, 0],
+      [2, 1],
+      [3, 1],
     ];
 
     if (reduce()) {
-      steps.forEach(([i, c, s]) => reveal(i, c, s)());
+      steps.forEach(([i, s]) => reveal(i, s)());
       return showActions();
     }
     let at = 0;
-    steps.forEach(([i, c, s]) => {
+    steps.forEach(([i, s]) => {
       later((at += PAUSE_MS), () => (typing.hidden = false));
-      later((at += TYPING_MS), reveal(i, c, s));
+      later((at += TYPING_MS), reveal(i, s));
     });
     later((at += PAUSE_MS), showActions);
   };
@@ -142,7 +137,6 @@ export function initConsult(root: HTMLElement): void {
       resultNext.textContent = ui.uiLocked ?? '';
       setStage(2, 'rejected');
     }
-    setCaption(kind);
     result.focus({ preventScroll: true });
   };
 

@@ -2,8 +2,8 @@
  * The user-guide device. Its controls only move this demo between its own
  * screens and states: nothing is sent anywhere.
  *
- * The device is right-to-left like the original guide, so a swipe towards
- * the right advances, whatever the page language.
+ * The device follows the page direction: a swipe towards the right advances
+ * in Arabic (right-to-left), towards the left in English.
  */
 const SWIPE_ORDER = ['procedure', 'assistant', 'support'];
 const SWIPE_PX = 40;
@@ -13,11 +13,11 @@ export function initShowcase(root: HTMLElement): void {
   const track = root.querySelector<HTMLElement>('[data-track]');
   const viewport = root.querySelector<HTMLElement>('.g-viewport');
   const screens = Array.from(root.querySelectorAll<HTMLElement>('[data-screen]'));
-  const captions = Array.from(root.querySelectorAll<HTMLElement>('[data-caption]'));
   const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('.g-tabbar [data-go]'));
   if (!track || !viewport || !screens.length) return;
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const rtl = root.querySelector('.device-screen')?.getAttribute('dir') === 'rtl';
   const ids = screens.map((s) => s.dataset.screen ?? '');
   let current = ids[0] ?? '';
   let origin = current; // where "back" returns from a screen outside the tab bar
@@ -67,7 +67,6 @@ export function initShowcase(root: HTMLElement): void {
       // Off-screen screens must not be reachable by keyboard or screen reader.
       screen.inert = !on;
     });
-    captions.forEach((c) => c.classList.toggle('is-on', c.dataset.caption === id));
 
     const activeTab = SWIPE_ORDER.includes(id) ? id : origin;
     tabs.forEach((tab) => {
@@ -161,10 +160,83 @@ export function initShowcase(root: HTMLElement): void {
     startX = null;
     if (Math.abs(dx) < SWIPE_PX) return;
     if (!SWIPE_ORDER.includes(current)) return go(origin);
-    const next = SWIPE_ORDER[SWIPE_ORDER.indexOf(current) + (dx > 0 ? 1 : -1)];
+    const forward = rtl ? dx > 0 : dx < 0;
+    const next = SWIPE_ORDER[SWIPE_ORDER.indexOf(current) + (forward ? 1 : -1)];
     if (next) go(next);
   });
   viewport.addEventListener('pointercancel', () => (startX = null));
 
   go(current);
+  initAutoplay();
+
+  // ----- Guided preview: a short, quiet loop until the visitor takes over -----
+
+  function initAutoplay(): void {
+    const cursor = root.querySelector<HTMLElement>('[data-cursor]');
+    const screen = root.querySelector<HTMLElement>('.device-screen');
+    if (!cursor || !screen || reduce.matches) return;
+
+    const q = (selector: string) => root.querySelector<HTMLElement>(selector);
+    const steps: Array<{ target: string; act: () => void; wait: number }> = [
+      { target: '.g-tabbar [data-go="assistant"]', act: () => go('assistant'), wait: 2200 },
+      { target: '[data-ask="1"]', act: () => ask(1), wait: 1900 },
+      { target: '[data-exchange="1"] .g-dest', act: () => go('permissions'), wait: 1800 },
+      { target: '[data-back]', act: () => go('assistant'), wait: 900 },
+      { target: '.g-tabbar [data-go="support"]', act: () => go('support'), wait: 2200 },
+      { target: '.g-tabbar [data-go="procedure"]', act: () => go('procedure'), wait: 2000 },
+    ];
+
+    let index = 0;
+    let timer = 0;
+    let visible = false;
+    let stopped = false;
+
+    const moveTo = (el: HTMLElement) => {
+      const a = screen.getBoundingClientRect();
+      const b = el.getBoundingClientRect();
+      const x = b.left - a.left + b.width / 2;
+      const y = b.top - a.top + b.height / 2;
+      cursor.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    const tick = () => {
+      if (stopped || !visible) return;
+      const step = steps[index % steps.length]!;
+      const el = q(step.target);
+      if (!el) {
+        index = 0;
+        return void (timer = window.setTimeout(tick, 1000));
+      }
+      cursor.classList.add('is-on');
+      moveTo(el);
+      timer = window.setTimeout(() => {
+        cursor.classList.add('is-tap');
+        step.act();
+        window.setTimeout(() => cursor.classList.remove('is-tap'), 260);
+        index += 1;
+        timer = window.setTimeout(tick, step.wait);
+      }, 900);
+    };
+
+    const stop = () => {
+      stopped = true;
+      window.clearTimeout(timer);
+      cursor.classList.remove('is-on', 'is-tap');
+    };
+
+    root.addEventListener('pointerdown', stop, { once: true });
+    root.addEventListener('keydown', stop, { once: true });
+    root.addEventListener('focusin', stop, { once: true });
+    reduce.addEventListener('change', () => reduce.matches && stop());
+
+    new IntersectionObserver(
+      ([entry]) => {
+        const was = visible;
+        visible = !!entry?.isIntersecting && !document.hidden;
+        if (visible && !was) timer = window.setTimeout(tick, 1600);
+        else if (!visible) window.clearTimeout(timer);
+      },
+      { threshold: 0.6 },
+    ).observe(root);
+  }
 }

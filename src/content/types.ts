@@ -18,7 +18,6 @@ export interface GuideScreen {
   id: 'procedure' | 'assistant' | 'support' | 'permissions';
   /** Present only for screens that sit in the app's bottom bar. */
   tab?: Localized;
-  caption: Localized;
 }
 
 /** Where a statement leaves the advisor's fact pipeline. */

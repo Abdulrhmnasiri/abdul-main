@@ -10,40 +10,34 @@ export const guide = {
     {
       id: 'procedure',
       tab: { ar: 'الإجراء', en: 'Procedure' },
-      caption: {
-        ar: 'الخطوات وصاحب الاعتماد والفيديو في صفحة واحدة.',
-        en: 'Steps, approver and video on a single page.',
-      },
     },
     {
       id: 'assistant',
       tab: { ar: 'المساعد', en: 'Assistant' },
-      caption: {
-        ar: 'توجيه بالكلمات المفتاحية إلى الصفحة المطلوبة. جرّب السؤالين.',
-        en: 'Keyword routing to the exact page. Try both questions.',
-      },
     },
     {
       id: 'support',
       tab: { ar: 'الدعم', en: 'Support' },
-      caption: {
-        ar: 'طلب دعم مع تحقق ومعاينة قبل الإرسال.',
-        en: 'A support request with validation and a preview before sending.',
-      },
     },
     {
       id: 'permissions',
-      caption: {
-        ar: 'الصلاحيات والاعتمادات، يصل إليها المساعد وصفحة الإجراء.',
-        en: 'Permissions and approvals, reached from the assistant and the procedure page.',
-      },
     },
   ] satisfies GuideScreen[],
 
   /** The two routing examples documented in the case study. */
   routes: [
-    { phrase: 'كيف أبدأ الإجراء؟', keyword: 'أبدأ', destination: 'الخطوة الأولى', go: 'procedure' },
-    { phrase: 'من يملك صلاحية الاعتماد؟', keyword: 'صلاحية', destination: 'الصلاحيات والاعتمادات', go: 'permissions' },
+    {
+      phrase: { ar: 'كيف أبدأ الإجراء؟', en: 'How do I start the procedure?' },
+      keyword: { ar: 'أبدأ', en: 'start' },
+      destination: { ar: 'الخطوة الأولى', en: 'First step' },
+      go: 'procedure',
+    },
+    {
+      phrase: { ar: 'من يملك صلاحية الاعتماد؟', en: 'Who can approve a request?' },
+      keyword: { ar: 'صلاحية', en: 'approve' },
+      destination: { ar: 'الصلاحيات والاعتمادات', en: 'Permissions and approvals' },
+      go: 'permissions',
+    },
   ],
 
   evidence: {
@@ -103,28 +97,6 @@ export const advisor = {
     read: 'النقطة تصف مهام الدعم الفني بوضوح، لكن استخدام الصياغة الشفهية يُضعف قيمتها في السيرة.',
     wording: 'معالجة تذاكر الدعم الفني وتشخيص المشكلات التقنية (Troubleshooting)، مع متابعة الالتزام باتفاقيات مستوى الخدمة (SLA) بالتنسيق مع الفريق.',
     question: 'إذا كانت لديك نسبة معينة للالتزام بالـ SLA (مثل 95%+) أو عدد تقريبي للتذاكر التي تتعامل معها، هل تود إضافتها لتقوية الأثر؟',
-    captions: {
-      understand: {
-        ar: 'يبدأ المستشار بما كتبه المرشح، ويحدد ما يُضعف النقطة.',
-        en: 'The advisor starts from what the candidate wrote and names what weakens it.',
-      },
-      wording: {
-        ar: 'يقترح صياغة يمكن الدفاع عنها، ويسأل عن رقم فقط إن كان موجودًا.',
-        en: 'It proposes defensible wording, and asks for a figure only if one exists.',
-      },
-      confirm: {
-        ar: 'لا يُحفظ شيء قبل أن يعتمد المرشح الصياغة أو يعدّلها أو يرفضها.',
-        en: 'Nothing is saved until the candidate confirms, edits or rejects the wording.',
-      },
-      saved: {
-        ar: 'بعد الاعتماد تُحفظ الصياغة وتُفتح المرحلة التالية.',
-        en: 'After confirmation the wording is saved and the next stage unlocks.',
-      },
-      rejected: {
-        ar: 'عند الرفض لا يُحفظ شيء، وتبقى المرحلة التالية مقفلة.',
-        en: 'On rejection nothing is saved, and the next stage stays locked.',
-      },
-    },
   },
 
   gate: [

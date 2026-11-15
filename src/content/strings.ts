@@ -3,23 +3,21 @@ import type { Locale } from './types.ts';
 const ar = {
   meta: {
     title: 'عبدالرحمن عسيري — مهندس دعم تقني',
-    description: 'مهندس دعم تقني ودعم تطبيقات في الرياض بخبرة 6 سنوات. دليل مستخدم في Production، ومستشار مهني قيد البحث والتطوير.',
+    description: 'مهندس دعم تقني ودعم تطبيقات في الرياض بخبرة 6 سنوات. دليل مستخدم في Production، ومستشار مهني قيد التطوير.',
   },
   skipLink: 'انتقل إلى المحتوى',
   nav: { label: 'التنقل', work: 'الأعمال', contact: 'تواصل', cv: 'السيرة الذاتية' },
   switchLanguage: { label: 'English', hint: 'View in English' },
   hero: {
     role: 'مهندس دعم تقني',
-    roleAlt: 'مهندس دعم تطبيقات',
+    roleAlt: 'أخصائي دعم تطبيقات',
     years: '6 سنوات خبرة',
-    place: 'الرياض',
-    line: 'أدعم التطبيقات وأحل مشكلات التشغيل، وأطوّر الأدوات والأنظمة التي تجعلها أسهل استخدامًا وأكثر موثوقية.',
+    line: 'أدعم التطبيقات وأتابع مشاكل التشغيل حتى تُحل، وأبني الأدوات والأدلة التي تسهّل العمل على الفريق.',
     index: 'المشاريع',
   },
   guide: {
     title: 'دليل المستخدم',
-    lede: 'دليل مدمج في نظام تشغيلي متعدد الوحدات، يجمع الإجراءات والصلاحيات والفيديو في مكان واحد.',
-    illustration: 'نموذج تفاعلي توضيحي',
+    lede: 'دليل مستخدم لنظام تشغيلي داخلي بعدة وحدات. بنيته على MkDocs ليجد الموظف الخطوات والصلاحيات وفيديو الشرح في مكان واحد.',
     screensLabel: 'شاشات الدليل',
   },
   evidence: {
@@ -40,8 +38,6 @@ const ar = {
       source: 'أُوقفت: اقتراحات السوق لا تُحفظ مباشرة كحقائق.',
       claim: 'أُوقفت: ادعاء أقدمية لا تسنده الحقائق المؤكدة.',
     },
-    interactive: 'مثال تفاعلي',
-    recorded: 'رد المستشار من تشغيل تجريبي مسجّل، وليس محادثة حية.',
     building: 'قيد التطوير',
     demoOn: 'Live Demo',
   },
@@ -71,7 +67,7 @@ const en: UiStrings = {
   meta: {
     title: 'Abdulrahman Asiri — Technical Support Engineer',
     description:
-      'Technical Support and Application Support Engineer in Riyadh with 6 years of experience. A User Guide in production, and a Career Advisor in research and development.',
+      'Technical Support and Application Support Engineer in Riyadh with 6 years of experience. A User Guide in production, and a Career Advisor in development.',
   },
   skipLink: 'Skip to content',
   nav: { label: 'Sections', work: 'Work', contact: 'Contact', cv: 'CV' },
@@ -80,14 +76,12 @@ const en: UiStrings = {
     role: 'Technical Support Engineer',
     roleAlt: 'Application Support Engineer',
     years: '6 years',
-    place: 'Riyadh',
-    line: 'I support applications and resolve operational issues, and I build the tools and systems that make them easier to use and more reliable.',
+    line: 'I keep applications running, follow operational problems through to a fix, and build the tools and guides that make the next one easier.',
     index: 'Projects',
   },
   guide: {
     title: 'User Guide',
-    lede: 'An in-app guide for a multi-module operational system, bringing procedures, permissions and video into one place.',
-    illustration: 'Interactive illustration',
+    lede: 'The user guide for an internal operations system with several modules. Built on MkDocs, so staff find the steps, permissions and walkthrough video in one place.',
     screensLabel: 'Guide screens',
   },
   evidence: {
@@ -108,8 +102,6 @@ const en: UiStrings = {
       source: 'Stopped: market suggestions are never stored directly as facts.',
       claim: 'Stopped: a seniority claim the confirmed facts do not support.',
     },
-    interactive: 'Interactive example',
-    recorded: 'The advisor reply is from a recorded test run, not a live conversation.',
     building: 'in development',
     demoOn: 'Live Demo',
   },

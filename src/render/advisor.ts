@@ -6,8 +6,8 @@ import type { RenderContext } from './context.ts';
 import { evidenceRows, renderRows } from './rows.ts';
 
 // The phone replays a recorded exchange, in the product's own language, on
-// both pages; the captions beneath carry the page language. Only the
-// controls change this demo's own state: nothing is stored or sent.
+// both pages. Only the controls change this demo's own state: nothing is
+// stored or sent.
 const UI = {
   title: 'مستشار مهني',
   rail: ['الفهم', 'الصياغة', 'الاعتماد'],
@@ -27,15 +27,13 @@ const UI = {
 };
 
 function renderConsult(ctx: RenderContext): SafeHtml {
-  const { locale, t } = ctx;
+  const { t } = ctx;
   const c = t.advisor;
   const k = advisor.consult;
-  const captions = Object.entries(k.captions);
   return html`
-    <figure class="showcase consult" data-consult aria-label="${c.interactive}"
+    <figure class="showcase consult" data-consult aria-label="${c.title}"
       data-ui-edit="${UI.edit}" data-ui-cancel="${UI.cancelEdit}" data-ui-empty="${UI.empty}" data-ui-locked="${UI.nextLocked}"
       data-ui-saved="${UI.saved}" data-ui-rejected="${UI.rejected}" data-ui-rejected-note="${UI.rejectedNote}" data-ui-open="${UI.nextOpen}">
-      <span class="showcase-badge">${c.interactive}</span>
       <div class="device device--tall">
         <div class="device-screen c-screen" dir="rtl" lang="ar">
           <div class="c-head">
@@ -70,12 +68,6 @@ function renderConsult(ctx: RenderContext): SafeHtml {
           </div>
         </div>
       </div>
-      <figcaption class="captions" aria-live="polite">
-        ${captions.map(
-          ([id, text], i) => html`<span class="caption${i === 0 ? ' is-on' : ''}" data-caption="${id}">${text[locale]}</span>`,
-        )}
-      </figcaption>
-      <p class="fineprint">${c.recorded}</p>
     </figure>
   `;
 }

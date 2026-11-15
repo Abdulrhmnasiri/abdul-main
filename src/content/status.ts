@@ -13,7 +13,7 @@ export const statusRows: StatusRow[] = [
   {
     id: 'advisor',
     label: { ar: 'مستشار مهني', en: 'Career Advisor' },
-    value: { ar: 'تطوير Backend وتكامل AI · بحث وتطوير', en: 'Backend & AI integration · R&D' },
+    value: { ar: 'هندسة البرمجيات · Development', en: 'Software engineering · Development' },
     state: 'building',
     href: '#advisor',
   },
