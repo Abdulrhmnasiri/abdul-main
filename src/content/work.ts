@@ -24,7 +24,7 @@ export const guide = {
     },
   ] satisfies GuideScreen[],
 
-  /** The two routing examples documented in the case study. */
+  /** The two questions the assistant screen answers. */
   routes: [
     {
       phrase: { ar: 'كيف أبدأ الإجراء؟', en: 'How do I start the procedure?' },

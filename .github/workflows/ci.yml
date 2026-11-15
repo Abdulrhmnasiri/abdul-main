@@ -22,6 +22,9 @@ jobs:
       - run: npm ci
       # Typecheck, tests, production build and built-output link validation.
       - run: npm run check
+      # Real-browser checks (WebKit and Chromium) against the built site.
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:e2e
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:

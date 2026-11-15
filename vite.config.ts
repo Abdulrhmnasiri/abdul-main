@@ -1,4 +1,5 @@
 /// <reference types="vitest/config" />
+import { posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, type Plugin, type ViteDevServer } from 'vite';
 import type { Locale } from './src/content/types.ts';
@@ -40,11 +41,55 @@ function prerenderPages(): Plugin {
   };
 }
 
+/**
+ * Inlines the built CSS and JavaScript into every page.
+ *
+ * GitHub Pages replaces all files on each deploy, so the content-hashed
+ * assets of the previous release start returning 404. Pages are cached for
+ * ten minutes (at the CDN and in browsers), so a visitor can still receive
+ * the previous release's HTML, and with it a link to a stylesheet that no
+ * longer exists. A self-contained page cannot fall out of step with its
+ * assets. Images keep their own files: their hashes only change with the
+ * image itself.
+ */
+function inlineAssets(): Plugin {
+  const SOURCE = { css: /<link\b[^>]*\bhref="([^"]+\.css)"[^>]*>/g, js: /<script\b[^>]*\bsrc="([^"]+\.js)"[^>]*><\/script>/g };
+  return {
+    name: 'inline-assets',
+    apply: 'build',
+    enforce: 'post',
+    generateBundle(_options, bundle) {
+      const inlined = new Set<string>();
+
+      const read = (fileName: string): string => {
+        const output = bundle[fileName];
+        if (!output) throw new Error(`inline-assets: ${fileName} is not in the bundle`);
+        if (output.type === 'chunk' && (output.imports.length || output.dynamicImports.length)) {
+          throw new Error(`inline-assets: ${fileName} imports other chunks and cannot be inlined`);
+        }
+        const text = output.type === 'chunk' ? output.code : String(output.source);
+        if (/<\/(?:script|style)|<!--/i.test(text)) throw new Error(`inline-assets: ${fileName} contains markup that would end the tag early`);
+        inlined.add(fileName);
+        return text;
+      };
+
+      for (const [pageName, page] of Object.entries(bundle)) {
+        if (page.type !== 'asset' || !pageName.endsWith('.html')) continue;
+        const target = (href: string) => posix.join(posix.dirname(pageName), href);
+        page.source = String(page.source)
+          .replace(SOURCE.css, (_tag, href: string) => `<style>${read(target(href))}</style>`)
+          .replace(SOURCE.js, (_tag, href: string) => `<script type="module">${read(target(href))}</script>`);
+      }
+      for (const fileName of inlined) delete bundle[fileName];
+    },
+  };
+}
+
 export default defineConfig({
   // Relative asset URLs keep the build portable between a custom domain and
   // a GitHub Pages project path.
   base: './',
-  plugins: [prerenderPages()],
+  plugins: [prerenderPages(), inlineAssets()],
   build: {
     target: 'es2022',
     rollupOptions: {
@@ -55,6 +100,8 @@ export default defineConfig({
     },
   },
   test: {
+    // Browser tests need built output and installed browsers; see vitest.e2e.config.ts.
     include: ['tests/**/*.test.ts'],
+    exclude: ['tests/e2e/**', 'node_modules/**'],
   },
 });

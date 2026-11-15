@@ -37,6 +37,15 @@ function resolveTarget(from, url) {
 let checked = 0;
 for (const page of pages) {
   const html = readFileSync(page, 'utf8');
+  // The site pages inline their CSS and JavaScript so a cached page can never
+  // outlive its assets across a deploy (see inlineAssets in vite.config.ts).
+  // The small redirect pages carry no stylesheet or script file either.
+  for (const [tag] of html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>|<script\b[^>]*\bsrc="[^"]*"[^>]*>/g)) {
+    const url = /(?:href|src)="([^"]*)"/.exec(tag)?.[1] ?? '';
+    if (!isExternal(url)) fail(page, `loads a local file instead of inlining it: ${tag}`);
+  }
+  if (page.endsWith('index.html') && !/<style>[\s\S]+?<\/style>/.test(html)) fail(page, 'has no inline stylesheet');
+  if (page.endsWith('index.html') && !/<script type="module">[\s\S]+?<\/script>/.test(html)) fail(page, 'has no inline script');
   const ids = idsOf(html);
   for (const [, , url] of html.matchAll(/\s(href|src)="([^"]*)"/g)) {
     if (!url || isExternal(url)) continue;

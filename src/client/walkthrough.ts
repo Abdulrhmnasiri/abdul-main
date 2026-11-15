@@ -1,10 +1,12 @@
 /**
  * The User Guide phone's walkthrough: a scripted, sanitized interface that
  * plays like a short video inside the procedure page's own video card, while
- * the numbered steps above the card tick off. It is a single deterministic timeline: every
- * frame is derived from the clock `t`, so play, pause, replay and a paused
- * first frame all share one code path. Nothing is sent or stored, and the
- * interface is a placeholder, not a recording of the production system.
+ * the numbered steps above the card tick off.
+ *
+ * It is a single deterministic timeline: every frame is derived from the
+ * clock `t`, so play, pause, replay and a paused first frame share one code
+ * path. Nothing is sent or stored, and the interface is a placeholder, not a
+ * recording of the production system.
  *
  * All text lives in the rendered markup; this module only moves the pointer
  * and toggles classes.
@@ -113,7 +115,6 @@ export function initWalkthrough(root: HTMLElement): void {
     full.slice(0, Math.round(full.length * clamp((t - from) / (to - from))));
 
   const render = () => {
-    // Scenes
     const drawer = t >= 2900 && t < 6300;
     overlay.classList.toggle('is-drawer', drawer);
     overlay.dataset.scene = t >= 8700 ? 'form' : t >= 6400 ? 'list' : 'home';
